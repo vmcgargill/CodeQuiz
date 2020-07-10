@@ -1,6 +1,21 @@
 /* BUTTON CSS ATTRIBUTES */
 
 .btn {
+    padding: 20px; 
+    font-size: 30px;
+    border-radius: 15px 15px 15px 15px;
+    color: white;
+}
+
+#starQuizBtn:hover, #submitAnswerBtn:hover, #cancelGameBtn:hover, #endGameBtn:hover {
+    background-color: rgb(85, 115, 248);
+}
+
+#starQuizBtn:active, #submitAnswerBtn:active, #cancelGameBtn:active, #endGameBtn:active {
+    background-color: darkblue;
+}
+
+#starQuizBtn {
     margin: 0; 
     margin-top: 150px; 
     margin-bottom: 150px; 
@@ -8,22 +23,26 @@
     left: 50%; 
     -ms-transform: translate(-50%, -50%); 
     transform: translate(-50%, -50%); 
-    color: white;
     background-color: blue; 
-    padding: 20px; 
-    font-size: 30px;
-    border-radius: 15px 15px 15px 15px;
 }
 
-.btn:hover {
-    background-color: rgb(85, 115, 248);
+#submitAnswerBtn {
+    background-color: blue;
+    margin: 20px;
 }
 
-.btn:active {
-    background-color: darkblue;
+#cancelGameBtn {
+    background-color: darkred;
+    margin: 20px;
 }
 
-/* QUIZ FORM ATTRIBUTES */
+#endGameBtn {
+
+}
+
+
+
+/* QUIZ FORM CLASS ATTRIBUTES */
 
 .quizForm {
     margin-left: 30%;
@@ -31,5 +50,12 @@
     margin-bottom: 5%;
 }
 
-/* FOOTER ATTRIBUTES */
+input {
+    margin: 25px;
+}
+
+label {
+    font-size: 25px;
+    margin: 25px
+}
 
