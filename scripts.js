@@ -20,6 +20,7 @@ footer.setAttribute("style", "color: white; background-color: blue; text-align: 
 footer.textContent = "© 2020 Vincent McGargill";
 
 
+
 /// GENERATE QUESTION FUNCTION ///
 function GenerateQuestions() {
 
@@ -94,11 +95,11 @@ function GenerateQuestions() {
     answerForm.appendChild(lineBreak);
 
     // Create Answer Button
-    var submitAnswerbtn = document.createElement("button");
-    submitAnswerbtn.setAttribute("class", "btn");
-    submitAnswerbtn.setAttribute("id", "submitAnswerBtn");
-    submitAnswerbtn.textContent = "Submit Answer";
-    answerForm.appendChild(submitAnswerbtn);
+    var SubmitAnswerbutton = document.createElement("button");
+    SubmitAnswerbutton.setAttribute("class", "btn");
+    SubmitAnswerbutton.setAttribute("id", "submitAnswerBtn");
+    SubmitAnswerbutton.textContent = "Submit Answer";
+    answerForm.appendChild(SubmitAnswerbutton);
 
     // Create Cancel Button
     var cancelGamebtn = document.createElement("button");
@@ -106,6 +107,20 @@ function GenerateQuestions() {
     cancelGamebtn.setAttribute("id", "cancelGameBtn");
     cancelGamebtn.textContent = "Cancel Game";
     answerForm.appendChild(cancelGamebtn);
+
+
+    var submitAnswer = document.querySelector("#submitAnswerBtn");
+    function submitAnswerFunc() {
+        alert("The submit button works!")
+    }
+    submitAnswer.addEventListener("click", submitAnswerFunc);
+
+
+    var CancelQuiz = document.querySelector("#cancelGameBtn");
+    function cancelQuizFunc() {
+        alert("The cancel button works!")
+    }
+    CancelQuiz.addEventListener("click", cancelQuizFunc);
 }
 
 
