@@ -1,22 +1,40 @@
 /// GENERATE HEADER ///
-var header = document.createElement("h1");
+var header = document.getElementById("quizHeader");
 header.setAttribute("style", "color: white; background-color: blue; text-align: center; padding: 30px;");
 header.textContent = "Code Quiz";
-document.body.appendChild(header);
 
 /// GENERATE START QUIZ BUTTON ///
-var StartQuizButton = document.createElement("button");
 // Instead of setting the style attribute here, I set the class attribute to be "btn".
-// That way we can write our CSS in the styles.css file and use features like hover.
+var StartQuizButton = document.createElement("button");
 StartQuizButton.setAttribute("class", "btn");
+StartQuizButton.setAttribute("id", "starQuizBtn");
 StartQuizButton.textContent = "Start the quiz!";
-document.body.appendChild(StartQuizButton);
+document.getElementById("quizFormDiv").appendChild(StartQuizButton);
 
 /// GENERATE FOOTER ///
-var footer = document.createElement("footer");
+var footer = document.getElementById("quizFooter");
 footer.setAttribute("style", "color: white; background-color: blue; text-align: center; padding: 30px");
 footer.textContent = "© 2020 Vincent McGargill";
-document.body.appendChild(footer);
+
+
+/// START QUIZ ///
+var starQuizBtn = document.querySelector("#starQuizBtn");
+function StartQuiz() {
+
+    // Hide the start button
+    starQuizBtn.style.display = "none";
+
+    // Create a QuizFormDiv.
+    var QuizFormDiv = document.getElementById("quizFormDiv");
+    QuizFormDiv.setAttribute("class", "quizForm")
+    QuizFormDiv.textContent = "Hello world again!!!"
+    
+
+    // Show button again when quiz is complete.
+    // starQuizBtn.style.display = "block";
+}
+/// EVENT LISTENER THAT LISTENS FOR STARTQUIZ BUTTON CLICK ///
+starQuizBtn.addEventListener("click", StartQuiz);
 
 
 // /// EXTRA STUFF FOR TESTING ///
