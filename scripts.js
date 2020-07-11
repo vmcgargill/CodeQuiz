@@ -76,7 +76,7 @@ function StartQuiz() {
 function GenerateQuestion() {
     SubmitAnswerForm.classList.remove("hidden");
     for (var qIndex = 0; qIndex < questions.length; qIndex++) {
-        QI = Math.floor(Math.random() * questions.length); 
+        var QI = Math.floor(Math.random() * questions.length); 
 
         QuizQuestion.innerHTML = questions[QI].question;
         LA.innerHTML = questions[QI].A;
@@ -103,12 +103,13 @@ function GenerateQuestion() {
                 
             if (UserAnser == CorrectAnswer) {
                 ShowCorrectAnswer.classList.add("AnswerCorrect");
-                ShowCorrectAnswer.innerText = "That is correct! The answer is " + questions[QI].CorrectAnswer
-                UserScore += 1
+                ShowCorrectAnswer.innerText = "That is correct! The answer is " + questions[QI].answer
+                // UserScore += 1
             } else {
                 ShowCorrectAnswer.classList.add("AnswerIncorrect");
-                ShowCorrectAnswer.innerText = "That is incorrect! The answer is " + questions[QI].CorrectAnswer
+                ShowCorrectAnswer.innerText = "That is incorrect! The answer is " + questions[QI].answer
             }
+            checkedAnswer.checked = false;
         }
     } 
 }
@@ -118,6 +119,7 @@ function NextQuestion() {
     ShowCorrectAnswer.classList.add("hidden");
     NextQuestionButton.classList.add("hidden");
     SubmitAnswerForm.classList.remove("hidden");
+    ShowCorrectAnswer.classList.remove("AnswerIncorrect")
     GenerateQuestion();
 }
 
