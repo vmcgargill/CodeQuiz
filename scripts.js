@@ -22,28 +22,92 @@ var UserHighScore = 0;
 
 let questions = [
     {
-        question: "What is my favorite food?",
-        A: "Pizza",
-        B: "Steak",
-        C: "Hamburger",
-        D: "Salad",
+        question: "What is HTML?",
+        A: "A Hypertext Markup Language",
+        B: "A styling language",
+        C: "A microsoft word document",
+        D: "A website",
         answer: "A" 
     },
     {
         question: "What is JavaScript?",
-        A: "A hyper text transfer",
+        A: "A hyper text transfer protocal",
         B: "A programming language",
         C: "A computer application",
         D: "An addressbook for the internet",
         answer: "B"
     },
     {
-        question: "How old are you?",
-        A: "1",
-        B: "2",
-        C: "3",
-        D: "4",
+        question: "What is CSS?",
+        A: "An internet web browser",
+        B: "A Central Styling System",
+        C: "A Casscading Style Sheet",
+        D: "A software program",
+        answer: "C"
+    },
+    {
+        question: "What is an API?",
+        A: "A programming language",
+        B: "A database",
+        C: "An Application Programming Interface",
+        D: "A HTML navigation bar",
+        answer: "C"
+    },
+    {
+        question: "What is Python?",
+        A: "A Snake",
+        B: "A high-level programming language",
+        C: "The language that Lord Voldemort speaks",
+        D: "A tyoe of web browser",
+        answer: "B"
+    },
+    {
+        question: "What is JSON?",
+        A: "A method that HTML gets CSS",
+        B: "A JavaScript function",
+        C: "A JavaScript Object Notation",
+        D: "My friend Jason",
+        answer: "C"
+    },
+    {
+        question: "What does Object Oriented Programming means?",
+        A: "A programming paradigm that involves objects and datasets",
+        B: "An application that uses physical objects",
+        C: "A website that displays pictures of objects",
+        D: "An object that is used to write programs",
+        answer: "A"
+    },
+    {
+        question: "What is 'git' ?",
+        A: "The word 'get' but mispelled",
+        B: "A programming language",
+        C: "A distributed version control system that tracks changes",
+        D: "A web application",
+        answer: "C"
+    },
+    {
+        question: "What is MySQL?",
+        A: "An acronym for my squirrel",
+        B: "A HTML framework",
+        C: "A CSS framework",
+        D: "A open source relational database system",
         answer: "D"
+    },
+    {
+        question: "What is MySQL?",
+        A: "An acronym for my squirrel",
+        B: "A HTML framework",
+        C: "A CSS framework",
+        D: "A open source relational database system",
+        answer: "D"
+    },
+    {
+        question: "How do you run JavaScript code outside of browsers such as FireFox or Google Chrome?",
+        A: "By using Java",
+        B: "Switch web browsers",
+        C: "By using runtime environments such as node.js",
+        D: "By running a function outside of object oriented programming",
+        answer: "C"
     }
 ]
 
@@ -76,7 +140,7 @@ function StartQuiz() {
 function GenerateQuestion() {
     SubmitAnswerForm.classList.remove("hidden");
     for (var qIndex = 0; qIndex < questions.length; qIndex++) {
-        var QI = Math.floor(Math.random() * questions.length); 
+        var QI = Math.floor(Math.random() * qIndex); 
 
         QuizQuestion.innerHTML = questions[QI].question;
         LA.innerHTML = questions[QI].A;
@@ -104,7 +168,7 @@ function GenerateQuestion() {
             if (UserAnser == CorrectAnswer) {
                 ShowCorrectAnswer.classList.add("AnswerCorrect");
                 ShowCorrectAnswer.innerText = "That is correct! The answer is " + questions[QI].answer
-                // UserScore += 1
+                UserScore += 1
             } else {
                 ShowCorrectAnswer.classList.add("AnswerIncorrect");
                 ShowCorrectAnswer.innerText = "That is incorrect! The answer is " + questions[QI].answer
