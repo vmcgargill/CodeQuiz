@@ -7,10 +7,32 @@
     <link rel="stylesheet" href="Assets/styles.css">
 </head>
 <body>
-    <!-- There is nothing to see here! To see all of my code, look at the scripts.js. All HTML and CSS is rendered in there. -->
-    <h1 id="quizHeader"></h1>
-    <div id="quizFormDiv"></div>
-    <footer id="quizFooter"></footer>
+    <!-- Quiz Header -->
+    <h1 id="QuizHeader">HTML, CSS, and Javascript Quiz</h1>
+    <!-- Quiz Container -->
+    <div class="container">
+        <!-- Start Quiz Button -->
+        <button id="StartQuizButton" class="btn" onClick="StartQuiz()">Start the Quiz</button>
+        <!-- Show High Score Div -->
+        <div id="ShowHighScore" class="ShowHighScore">You have not taken the quiz yet!</div>
+        <!-- Submit Answer Div -->
+        <div id="SubmitAnswerForm" class="hidden">
+            <h2 id="QuizQuestion">What is my favorite food?</h2>
+            <input type="radio" id="A" name="AnswerForm" value="A">
+            <label for="A" id="LA">Pizza</label><br>
+            <input type="radio" id="B" name="AnswerForm" value="B">
+            <label for="B" id="LB">Hamburgers</label><br>
+            <input type="radio" id="C" name="AnswerForm" value="C">
+            <label for="C" id="LC">Salad</label><br>
+            <input type="radio" id="D" name="AnswerForm" value="D">
+            <label for="D" id="LD">Steak</label><br>
+            <button class="btn" id="SubmitAnswerButton" onclick="SubmitAnswer()">Submit Answer</button>
+            <button class="btn" id="CancelQuizButton">Cancel Quiz</button>
+        </div>
+        <!-- Show Correct Answer Div -->
+        <div id="ShowCorrectAnswer" class="hidden"></div>
+    </div>
+    <footer id="QuizFooter">© 2020 Vincent McGargill</footer>
     <script src="scripts.js"></script>
 </body>
 </html>
