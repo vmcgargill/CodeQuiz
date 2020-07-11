@@ -23,11 +23,11 @@ var UserHighScore = 0;
 let questions = [
     {
         question: "What is HTML?",
-        A: "A Hypertext Markup Language",
+        A: "Hypertext Markup Language",
         B: "A styling language",
         C: "A microsoft word document",
         D: "A website",
-        answer: "A" 
+        answer: "Hypertext Markup Language" 
     },
     {
         question: "What is JavaScript?",
@@ -35,15 +35,15 @@ let questions = [
         B: "A programming language",
         C: "A computer application",
         D: "An addressbook for the internet",
-        answer: "B"
+        answer: "A programming language"
     },
     {
         question: "What is CSS?",
         A: "An internet web browser",
         B: "A Central Styling System",
-        C: "A Casscading Style Sheet",
+        C: "Casscading Style Sheet",
         D: "A software program",
-        answer: "C"
+        answer: "Casscading Style Sheet"
     },
     {
         question: "What is an API?",
@@ -51,7 +51,7 @@ let questions = [
         B: "A database",
         C: "An Application Programming Interface",
         D: "A HTML navigation bar",
-        answer: "C"
+        answer: "An Application Programming Interface"
     },
     {
         question: "What is Python?",
@@ -59,7 +59,7 @@ let questions = [
         B: "A high-level programming language",
         C: "The language that Lord Voldemort speaks",
         D: "A tyoe of web browser",
-        answer: "B"
+        answer: "A high-level programming language"
     },
     {
         question: "What is JSON?",
@@ -67,7 +67,7 @@ let questions = [
         B: "A JavaScript function",
         C: "A JavaScript Object Notation",
         D: "My friend Jason",
-        answer: "C"
+        answer: "A JavaScript Object Notation"
     },
     {
         question: "What does Object Oriented Programming means?",
@@ -75,7 +75,7 @@ let questions = [
         B: "An application that uses physical objects",
         C: "A website that displays pictures of objects",
         D: "An object that is used to write programs",
-        answer: "A"
+        answer: "A programming paradigm that involves objects and datasets"
     },
     {
         question: "What is 'git' ?",
@@ -83,7 +83,7 @@ let questions = [
         B: "A programming language",
         C: "A distributed version control system that tracks changes",
         D: "A web application",
-        answer: "C"
+        answer: "A distributed version control system that tracks changes"
     },
     {
         question: "What is MySQL?",
@@ -91,15 +91,7 @@ let questions = [
         B: "A HTML framework",
         C: "A CSS framework",
         D: "A open source relational database system",
-        answer: "D"
-    },
-    {
-        question: "What is MySQL?",
-        A: "An acronym for my squirrel",
-        B: "A HTML framework",
-        C: "A CSS framework",
-        D: "A open source relational database system",
-        answer: "D"
+        answer: "A open source relational database system"
     },
     {
         question: "How do you run JavaScript code outside of browsers such as FireFox or Google Chrome?",
@@ -107,7 +99,7 @@ let questions = [
         B: "Switch web browsers",
         C: "By using runtime environments such as node.js",
         D: "By running a function outside of object oriented programming",
-        answer: "C"
+        answer: "By using runtime environments such as node.js"
     }
 ]
 
@@ -115,7 +107,7 @@ let questions = [
 var CurrentQuestion = 0;
 var UserScore = 0;
 var correctAnswers = 0;
-let UserAnser;
+let UserAnswer;
 
 
 // This for loop works
@@ -139,22 +131,26 @@ function StartQuiz() {
 
 function GenerateQuestion() {
     SubmitAnswerForm.classList.remove("hidden");
-    for (var qIndex = 0; qIndex < questions.length; qIndex++) {
+    for (var qIndex = 1; qIndex < questions.length; qIndex++) {
         var QI = Math.floor(Math.random() * qIndex); 
 
         QuizQuestion.innerHTML = questions[QI].question;
+        A.value = questions[QI].A;
         LA.innerHTML = questions[QI].A;
+        B.value = questions[QI].B;
         LB.innerHTML = questions[QI].B;
+        C.value = questions[QI].C;
         LC.innerHTML = questions[QI].C;
+        D.value = questions[QI].D;
         LD.innerHTML = questions[QI].D;
         
         let CorrectAnswer = questions[QI].answer
-        let UserAnser;
+        // let UserAnser;
 
         SubmitAnswerButton.onclick = function CheckAnswer() {
             for (var checkedAnswer of AnswerForm) {
                 if (checkedAnswer.checked) {
-                    UserAnser = checkedAnswer.value;
+                    UserAnswer = checkedAnswer.value;
                     break;
                 }
             }
@@ -165,13 +161,14 @@ function GenerateQuestion() {
             NextQuestionButton.classList.add("btn")
                 
                 
-            if (UserAnser == CorrectAnswer) {
+            if (UserAnswer == CorrectAnswer) {
                 ShowCorrectAnswer.classList.add("AnswerCorrect");
                 ShowCorrectAnswer.innerText = "That is correct! The answer is " + questions[QI].answer
                 UserScore += 1
+                console.log(UserAnswer)
             } else {
                 ShowCorrectAnswer.classList.add("AnswerIncorrect");
-                ShowCorrectAnswer.innerText = "That is incorrect! The answer is " + questions[QI].answer
+                ShowCorrectAnswer.innerText = 'That is incorrect! The answer is not "' + UserAnswer +  '". The correct answer is "' + questions[QI].answer + '".'
             }
             checkedAnswer.checked = false;
         }
