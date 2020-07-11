@@ -48,8 +48,25 @@ let questions = [
 ]
 
 
+var CurrentQuestion = 0;
+var UserScore = 0;
+var correctAnswers = 0;
+let UserAnser;
+
+
+// This for loop works
+// for (var qIndex = 0; qIndex < questions.length; qIndex++) {
+//     CurrentQuestion = Math.floor(Math.random() * questions.length); 
+
+//     // console.log(CurrentQuestion);
+//     ShowHighScore.innerHTML = CurrentQuestion;
+// }
+
+
+
 // Start Quiz
 function StartQuiz() {
+
     StartQuizButton.classList.add("hidden");
     ShowHighScore.classList.add("hidden");
     GenerateQuestion()
@@ -59,14 +76,15 @@ function StartQuiz() {
 function GenerateQuestion() {
     SubmitAnswerForm.classList.remove("hidden");
     for (var qIndex = 0; qIndex < questions.length; qIndex++) {
-        QuizQuestion.innerHTML = questions[qIndex].question;
-        LA.innerHTML = questions[qIndex].A;
-        LB.innerHTML = questions[qIndex].B;
-        LC.innerHTML = questions[qIndex].C;
-        LD.innerHTML = questions[qIndex].D;
-        // alert(questions[qIndex].answer)
+        QI = Math.floor(Math.random() * questions.length); 
+
+        QuizQuestion.innerHTML = questions[QI].question;
+        LA.innerHTML = questions[QI].A;
+        LB.innerHTML = questions[QI].B;
+        LC.innerHTML = questions[QI].C;
+        LD.innerHTML = questions[QI].D;
         
-        let CorrectAnswer = questions[qIndex].answer
+        let CorrectAnswer = questions[QI].answer
         let UserAnser;
 
         SubmitAnswerButton.onclick = function CheckAnswer() {
@@ -76,30 +94,31 @@ function GenerateQuestion() {
                     break;
                 }
             }
-
+                
             SubmitAnswerForm.classList.add("hidden");
             ShowCorrectAnswer.classList.remove("hidden");
             NextQuestionButton.classList.remove("hidden");
             NextQuestionButton.classList.add("btn")
-
-
+                
+                
             if (UserAnser == CorrectAnswer) {
                 ShowCorrectAnswer.classList.add("AnswerCorrect");
-                ShowCorrectAnswer.innerText = "That is correct! The answer is " + UserAnser
+                ShowCorrectAnswer.innerText = "That is correct! The answer is " + questions[QI].CorrectAnswer
+                UserScore += 1
             } else {
                 ShowCorrectAnswer.classList.add("AnswerIncorrect");
-                ShowCorrectAnswer.innerText = "That is incorrect! The answer is " + CorrectAnswer
+                ShowCorrectAnswer.innerText = "That is incorrect! The answer is " + questions[QI].CorrectAnswer
             }
         }
     } 
 }
 
+
 function NextQuestion() {
     ShowCorrectAnswer.classList.add("hidden");
     NextQuestionButton.classList.add("hidden");
-
-    // Reminder to remove this later.
-    EndQuiz()
+    SubmitAnswerForm.classList.remove("hidden");
+    GenerateQuestion();
 }
 
 function CancelQuiz() {
