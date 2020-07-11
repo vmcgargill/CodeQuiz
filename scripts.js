@@ -131,7 +131,7 @@ function StartQuiz() {
 
 function GenerateQuestion() {
     SubmitAnswerForm.classList.remove("hidden");
-    for (var qIndex = 1; qIndex < questions.length; qIndex++) {
+    for (var qIndex = 0; qIndex < questions.length; qIndex++) {
         var QI = Math.floor(Math.random() * qIndex); 
 
         QuizQuestion.innerHTML = questions[QI].question;
@@ -146,7 +146,7 @@ function GenerateQuestion() {
         
         let CorrectAnswer = questions[QI].answer
         // let UserAnser;
-
+        
         SubmitAnswerButton.onclick = function CheckAnswer() {
             for (var checkedAnswer of AnswerForm) {
                 if (checkedAnswer.checked) {
@@ -172,7 +172,7 @@ function GenerateQuestion() {
             }
             checkedAnswer.checked = false;
         }
-    } 
+    }
 }
 
 
@@ -183,6 +183,9 @@ function NextQuestion() {
     ShowCorrectAnswer.classList.remove("AnswerIncorrect")
     GenerateQuestion();
 }
+
+
+
 
 function CancelQuiz() {
     SubmitAnswerForm.classList.add("hidden");
