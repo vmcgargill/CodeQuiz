@@ -17,20 +17,24 @@
         <div id="ShowHighScore" class="ShowHighScore">You have not taken the quiz yet!</div>
         <!-- Submit Answer Div -->
         <div id="SubmitAnswerForm" class="hidden">
-            <h2 id="QuizQuestion">What is my favorite food?</h2>
+            <h2 id="QuizQuestion"></h2>
             <input type="radio" id="A" name="AnswerForm" value="A">
-            <label for="A" id="LA">Pizza</label><br>
+            <label for="A" id="LA"></label><br>
             <input type="radio" id="B" name="AnswerForm" value="B">
-            <label for="B" id="LB">Hamburgers</label><br>
+            <label for="B" id="LB"></label><br>
             <input type="radio" id="C" name="AnswerForm" value="C">
-            <label for="C" id="LC">Salad</label><br>
+            <label for="C" id="LC"></label><br>
             <input type="radio" id="D" name="AnswerForm" value="D">
-            <label for="D" id="LD">Steak</label><br>
+            <label for="D" id="LD"></label><br>
             <button class="btn" id="SubmitAnswerButton" onclick="SubmitAnswer()">Submit Answer</button>
-            <button class="btn" id="CancelQuizButton">Cancel Quiz</button>
+            <button class="btn" id="CancelQuizButton" onClick="CancelQuiz()">Cancel Quiz</button>
         </div>
-        <!-- Show Correct Answer Div -->
+        <br><br><br><br>
         <div id="ShowCorrectAnswer" class="hidden"></div>
+        <div id="ShowScore" class="hidden">Congratulations, you scored 100%</div>
+        <br><br><br><br>
+        <button id="NextQuestionButton" class="hidden" onclick="NextQuestion()">Next Question</button>
+        <button id="EndQuizButton" class="hidden" onclick="EndQuiz()">End Quiz</button>
     </div>
     <footer id="QuizFooter">© 2020 Vincent McGargill</footer>
     <script src="scripts.js"></script>

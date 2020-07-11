@@ -37,7 +37,7 @@ body {
     background-color: darkblue;
 }
 
-#StartQuizButton {
+#StartQuizButton, #NextQuestionButton, #EndQuizButton {
     margin: 0;
     margin-top: 150px;
     margin-bottom: 50px;
@@ -82,9 +82,8 @@ label {
 
 .ShowHighScore {
     background-color: white;
-    border: 3px;
-    border-color: black;
-    border-style: solid;
+    border: 3px solid black;
+    border-radius: 25px;
     text-align: center;
     font-size: 30px;
     padding: 20px;
@@ -93,3 +92,26 @@ label {
     margin-right: auto;
     position: relative;
 }
+
+.AnswerCorrect {
+    margin: auto;
+    width: 50%;
+    border: 3px solid green;
+    padding: 15px;
+    background-color: white;
+    text-align: center;
+    font-size: 25px;
+    color: green;
+  }
+  
+  .AnswerIncorrect {
+    margin: auto;
+    width: 50%;
+    border: 3px solid red;
+    padding: 15px;
+    background-color: white;
+    text-align: center;
+    font-size: 25px;
+    color: red;
+  }
+  
