@@ -193,13 +193,14 @@ function GenerateQuestion(qIndex) {
             '". The correct answer is "' + questions[qIndex].answer + '".'
         }
         
-        // If statement that either shows the next button or shows the end quiz button
+        // If statement that either shows the next and cancel button or shows the end quiz button
         // We have to add 1 to qIndex because the array starts at 0 and questions.length starts at 1
         if (qIndex + 1 < questions.length) {
             NextQuestionButton.classList.remove("hidden");
             NextQuestionButton.classList.add("btn");
         } else {
             NextQuestionButton.classList.add("hidden");
+            CancelQuizButton.classList.add("hidden");
             EndQuizButton.classList.remove("hidden");
             EndQuizButton.classList.add("btn");
         }

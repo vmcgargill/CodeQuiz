@@ -30,6 +30,8 @@ body {
 
 .btn {
     margin: auto;
+    margin-top: 100px;
+    margin-bottom: 50px;
     position: relative;
     left: 50%;
     -ms-transform: translate(-50%, -50%);
@@ -44,30 +46,22 @@ body {
     transition-duration: 0.75s;
 }
 
-#StartQuizButton:hover, #SubmitAnswerButton:hover, #CancelQuizButton:hover,
-#NextQuestionButton:hover, #EndQuizButton:hover {
+.btn:hover {
     background-color: rgb(85, 115, 248);
 }
 
-#StartQuizButton:active, #SubmitAnswerButton:active, #CancelQuizButton:active,
-#NextQuestionButton:active, #EndQuizButton:active {
+
+.btn:active {
     background-color: darkblue;
 }
 
-#StartQuizButton, #NextQuestionButton, #EndQuizButton, #SubmitAnswerButton, #CancelQuizButton {
-    margin: 0;
-    margin-top: 150px;
-    margin-bottom: 50px;
-    position: relative;
-    left: 50%;
-    -ms-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
+#StartQuizButton {
+    margin-top: 175px;
 }
 
 #CancelQuizButton {
     background-color: darkred;
-    margin-top: 0px;;
-    
+    margin-top: 0px;
 }
 
 #EndQuizButton {
