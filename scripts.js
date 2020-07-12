@@ -135,13 +135,101 @@ let questions = [
         answer: "Collection of properties with names, keys, and values"
     },
     {
-        question: "What is a JavaScript Object?",
-        A: "A div container",
-        B: "Collection of properties with names, keys, and values",
-        C: "An image URL",
-        D: "Database",
-        answer: "Collection of properties with names, keys, and values"
+        question: "How do you access database information on the web?",
+        A: "Create local database",
+        B: "Loading a local database",
+        C: "By asking for permission",
+        D: "By using APIs",
+        answer: "By using APIs"
     },
+    {
+        question: "Which language is used to build a website?",
+        A: "HTML",
+        B: "CSS",
+        C: "JavaScript",
+        D: "All of the above",
+        answer: "All of the above"
+    },
+    {
+        question: "Which language is used to stlye a website?",
+        A: "HTML",
+        B: "CSS",
+        C: "JavaScript",
+        D: "All of the above",
+        answer: "CSS"
+    },
+    {
+        question: "Which language creates electronic documents?",
+        A: "HTML",
+        B: "CSS",
+        C: "JavaScript",
+        D: "All of the above",
+        answer: "HTML"
+    },
+    {
+        question: "Which language is used to make websites responsive and interactive?",
+        A: "HTML",
+        B: "CSS",
+        C: "JavaScript",
+        D: "All of the above",
+        answer: "JavaScript"
+    },
+    {
+        question: "What is C#?",
+        A: "A general purpose programming language",
+        B: "A website",
+        C: "A letter and a pound sign",
+        D: "A typo",
+        answer: "A general purpose programming language"
+    },
+    {
+        question: "What is JQuery?",
+        A: "A programming language",
+        B: "An object",
+        C: "JavaScript library",
+        D: "A question",
+        answer: "JavaScript library"
+    },
+    {
+        question: "What is NoSql?",
+        A: "Programming Language",
+        B: "Web API",
+        C: "Type of database",
+        D: "Acronym for No Squirrel",
+        answer: "Type of database"
+    },
+    {
+        question: "What is the difference between MySQL and NoSql?",
+        A: "They have different tables",
+        B: "MySQL sores data and NoSQL distributes it",
+        C: "MySQL is a relational database, NoSQL is non-relational",
+        D: "They are both the same",
+        answer: "MySQL is a relational database, NoSQL is non-relational"
+    },
+    {
+        question: "What is Laravel?",
+        A: "App extension",
+        B: "Browser extension",
+        C: "Open source PHP framework",
+        D: "API",
+        answer: "Open source PHP framework"
+    },
+    {
+        question: "What is PHP?",
+        A: "Hypertext Preprocessor",
+        B: "Desktop app",
+        C: "HTML Framework",
+        D: "Dataabse",
+        answer: "Hypertext Preprocessor"
+    },
+    {
+        question: "What does MVC stand for?",
+        A: "Manual View Control",
+        B: "Model View Control",
+        C: "Made View Central",
+        D: "Math Version Control",
+        answer: "Model View Control"
+    }
 ]
 
 /// Question Timer ///
@@ -157,7 +245,6 @@ function setTime() {
       UserAnswer = "null";
       SubmitAnswerButton.onclick();
     }
-
   }, 1000);
 }
 
@@ -186,7 +273,7 @@ function GenerateQuestion(qIndex) {
     D.value = questions[qIndex].D;
     LD.innerHTML = questions[qIndex].D;
 
-    // Check for correct answer on click
+    /// Check Answer ///
     let CorrectAnswer = questions[qIndex].answer
     SubmitAnswerButton.onclick = function CheckAnswer() {
         timer.textContent = ""
@@ -257,7 +344,6 @@ function NextQuestion() {
 
 /// Cancel Quiz ///
 function CancelQuiz() {
-    // QuestionTimer = 10;
     timer.classList.add("hidden");
     SubmitAnswerForm.classList.add("hidden");
     clearInterval(timerInterval);

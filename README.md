@@ -10,7 +10,7 @@ the questions array and start adding question objects then
 the app updates everything else automatically like the number 
 of questions and the total percentage.
 
-## File Scope
+# File Scope
 
 ```
 The scripts.js file holds all of the magic behind this 
@@ -19,7 +19,7 @@ the location of all the div containers. The Assets/styles.
 css  file styles the app to make it look fancy and unique.
 ```
 
-## JavaScript Code
+# JavaScript Code
 
 ```
 The scripts.js file has the most important code in this 
@@ -29,7 +29,7 @@ a couple of fancy buttons that to nothing. See below for the
 JavaScrip code explained.
 ```
 
-# Constant HTML Elements
+## Constant HTML Elements
 
 ```
 Under the Constant HTML Elements section we are creating 
@@ -41,7 +41,7 @@ can update the CSS and hide or unhide containers by changing
 the element classes.
 ```
 
-# Global Variables
+## Global Variables
 
 ```
 In the global variables section we have a few set varaibales 
@@ -59,7 +59,7 @@ every game, and update the user high score  after the first
 quiz or after the user beats their previous high score. 
 ```
 
-# Questions Array
+## Questions Array
 
 ```
 The Questions Array holds all of our question objects that 
@@ -81,7 +81,7 @@ then grade the quiz behind the scenes on a server, then send
 the user the results afterwards.
 ```
 
-# Question Timer
+## Question Timer
 
 ```
 The Quiz Timer is just a simple setTime() function that 
@@ -98,7 +98,7 @@ while thetotal time avaialable to complete the quiz
 automatically updates per question added/removed.  
 ```
 
-# Start Quiz
+## Start Quiz
 
 ```
 The Start Quiz function hides the defult front page and then 
@@ -106,7 +106,7 @@ shows the quiz form. Then it  activates the GenerateQuestion
 (qIndex) funtion starting at the first question in the index.
 ```
 
-# Generate Question
+## Generate Question
 
 ```
 The Generate Questions function takes the current question 
@@ -147,7 +147,7 @@ last question then it will hide the next question button and
 show the end game button. 
 ```
 
-# Next Question
+## Next Question
 
 ```
 The Next Question function is where the question loop magic 
@@ -162,7 +162,7 @@ question button, an reveals the submit answer form to show
 the next question.
 ```
 
-# Cancel Quiz
+## Cancel Quiz
 
 ```
 The cancel quiz button enables the user to stop the quiz and 
@@ -171,7 +171,7 @@ recorded and the timer is reset. This is accomplished by
 running the End Quiz function within this function.
 ```
 
-# End Quiz
+## End Quiz
 
 ```
 The End Game function hides all of the answer elements and 
@@ -184,7 +184,7 @@ function which updates the current game cache so the user may
 start a new game if they want to beat their high score.
 ```
 
-# Update Cache
+## Update Cache
 
 ```
 The Update Cache function resets the current user score to 0 
