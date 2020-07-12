@@ -18,8 +18,13 @@ const ShowCorrectAnswer = document.getElementById("ShowCorrectAnswer");
 const NextQuestionButton = document.getElementById("NextQuestionButton");
 const EndQuizButton = document.getElementById("EndQuizButton");
 
+// Set Global Variables
 var UserHighScore = 0;
+var UserScore = 0;
+var qIndex = 0;
+let UserAnswer;
 
+// Create array of questions and answers
 let questions = [
     {
         question: "What is HTML?",
@@ -31,7 +36,7 @@ let questions = [
     },
     {
         question: "What is JavaScript?",
-        A: "A hyper text transfer protocal",
+        A: "Hyper text transfer protocal",
         B: "A programming language",
         C: "A computer application",
         D: "An addressbook for the internet",
@@ -40,7 +45,7 @@ let questions = [
     {
         question: "What is CSS?",
         A: "An internet web browser",
-        B: "A Central Styling System",
+        B: "A control system",
         C: "Casscading Style Sheet",
         D: "A software program",
         answer: "Casscading Style Sheet"
@@ -49,25 +54,25 @@ let questions = [
         question: "What is an API?",
         A: "A programming language",
         B: "A database",
-        C: "An Application Programming Interface",
-        D: "A HTML navigation bar",
-        answer: "An Application Programming Interface"
+        C: "Application Programming Interface",
+        D: "HTML navigation bar",
+        answer: "Application Programming Interface"
     },
     {
         question: "What is Python?",
         A: "A Snake",
-        B: "A high-level programming language",
+        B: "High-level programming language",
         C: "The language that Lord Voldemort speaks",
-        D: "A tyoe of web browser",
-        answer: "A high-level programming language"
+        D: "A type of web browser",
+        answer: "High-level programming language"
     },
     {
         question: "What is JSON?",
         A: "A method that HTML gets CSS",
         B: "A JavaScript function",
-        C: "A JavaScript Object Notation",
-        D: "My friend Jason",
-        answer: "A JavaScript Object Notation"
+        C: "JavaScript Object Notation",
+        D: "My friend named Jason",
+        answer: "JavaScript Object Notation"
     },
     {
         question: "What does Object Oriented Programming means?",
@@ -81,17 +86,17 @@ let questions = [
         question: "What is 'git' ?",
         A: "The word 'get' but mispelled",
         B: "A programming language",
-        C: "A distributed version control system that tracks changes",
-        D: "A web application",
-        answer: "A distributed version control system that tracks changes"
+        C: "Distributed version control system that tracks changes",
+        D: "Web application",
+        answer: "Distributed version control system that tracks changes"
     },
     {
         question: "What is MySQL?",
         A: "An acronym for my squirrel",
-        B: "A HTML framework",
-        C: "A CSS framework",
-        D: "A open source relational database system",
-        answer: "A open source relational database system"
+        B: "HTML framework",
+        C: "CSS framework",
+        D: "Open source relational database system",
+        answer: "Open source relational database system"
     },
     {
         question: "How do you run JavaScript code outside of browsers such as FireFox or Google Chrome?",
@@ -103,30 +108,8 @@ let questions = [
     }
 ]
 
-
-var CurrentQuestion = 0;
-var UserScore = 0;
-var correctAnswers = 0;
-let UserAnswer;
-
-
-// This for loop works
-// for (var qIndex = 0; qIndex < questions.length; qIndex++) {
-//     CurrentQuestion = Math.floor(Math.random() * questions.length); 
-
-//     // console.log(CurrentQuestion);
-//     ShowHighScore.innerHTML = CurrentQuestion;
-// }
-
-
-
-var qIndex = 0;
-
-
-
 // Start Quiz
 function StartQuiz() {
-
     StartQuizButton.classList.add("hidden");
     ShowHighScore.classList.add("hidden");
     SubmitAnswerForm.classList.remove("hidden");
@@ -134,9 +117,9 @@ function StartQuiz() {
     GenerateQuestion(qIndex);
 }
 
-
+// Generate new function
 function GenerateQuestion(qIndex) {
-
+    
     QuizQuestion.innerHTML = questions[qIndex].question;
     A.value = questions[qIndex].A;
     LA.innerHTML = questions[qIndex].A;
@@ -166,7 +149,7 @@ function GenerateQuestion(qIndex) {
         if (UserAnswer == CorrectAnswer) {
             ShowCorrectAnswer.classList.add("AnswerCorrect");
             ShowCorrectAnswer.innerText = "That is correct! The answer is " + questions[qIndex].answer
-            UserScore += 1
+            UserScore++
             console.log(UserAnswer)
         } else {
             ShowCorrectAnswer.classList.add("AnswerIncorrect");
@@ -176,13 +159,13 @@ function GenerateQuestion(qIndex) {
     }
 }
 
-
+// Navigate to next question
 function NextQuestion() {
     if (qIndex < questions.length) {
         qIndex++
         GenerateQuestion(qIndex);
     } else {
-        alert("End game!!")
+        alert("End game!! Your score was: " + UserScore)
     }
     ShowCorrectAnswer.classList.remove("AnswerIncorrect")
     ShowCorrectAnswer.classList.remove("AnswerCorrect")
@@ -191,11 +174,10 @@ function NextQuestion() {
     SubmitAnswerForm.classList.remove("hidden");
 }
 
-
-
-
+// Cancel the quiz and start over
 function CancelQuiz() {
-    SubmitAnswerForm.classList.add("hidden");
+    alert("Hello world! This does not do anything yet.")
+    // SubmitAnswerForm.classList.add("hidden");
 }
 
 // End Quiz

@@ -12,7 +12,6 @@ body {
 .container {
     background-color: lightgray;
     margin: 5%;
-    /* margin-bottom: auto; */
     height: 750px;
 }
 
@@ -93,25 +92,21 @@ label {
     position: relative;
 }
 
-.AnswerCorrect {
+#ShowCorrectAnswer {
     margin: auto;
     width: 50%;
-    border: 3px solid green;
     padding: 15px;
     background-color: white;
     text-align: center;
     font-size: 25px;
+}
+
+.AnswerCorrect {
+    border: 3px solid green;
     color: green;
   }
-  
-  .AnswerIncorrect {
-    margin: auto;
-    width: 50%;
+.AnswerIncorrect {
     border: 3px solid red;
-    padding: 15px;
-    background-color: white;
-    text-align: center;
-    font-size: 25px;
     color: red;
   }
   
