@@ -13,9 +13,9 @@
     <div class="container">
         <!-- Start Quiz Button -->
         <button id="StartQuizButton" class="btn" onClick="StartQuiz()">Start the Quiz</button>
-        <!-- Show High Score Div -->
+        <!-- Show High Score-->
         <div id="ShowHighScore" class="hidden"></div>
-        <!-- Submit Answer Div -->
+        <!-- Submit Answer Form -->
         <div id="SubmitAnswerForm" class="hidden">
             <h2 id="QuizQuestion"></h2>
             <input type="radio" id="A" name="AnswerForm" value="A">
@@ -27,16 +27,17 @@
             <input type="radio" id="D" name="AnswerForm" value="D">
             <label for="D" id="LD"></label><br>
             <button id="SubmitAnswerButton" class="btn">Submit Answer</button>
+            <!-- Timer -->
             <div class="hidden" id="timer"></div>
         </div>
         <br><br>
         <!-- Show Correct Answer -->
         <div id="ShowCorrectAnswer" class="hidden"></div>
-        <!-- <br><br> -->
         <!-- Next Question Button -->
         <button id="NextQuestionButton" class="hidden" onclick="NextQuestion()">Next Question</button><br><br><br>
+        <!-- Cancel Quiz Button -->
         <button id="CancelQuizButton" class="hidden" onClick="CancelQuiz()">Cancel Quiz</button>
-        <!-- End Quiz Button After Quiz Complete -->
+        <!-- End Quiz Button -->
         <button id="EndQuizButton" class="hidden" onclick="EndQuiz()">End Quiz</button>
     </div>
     <footer id="QuizFooter">© 2020 Vincent McGargill</footer>

@@ -1,4 +1,4 @@
-// Get all of the HTML elements by their IDs
+/// Constant HTML Elements ///
 const StartQuizButton = document.getElementById("StartQuizButton");
 const ShowHighScore = document.getElementById("ShowHighScore");
 const SubmitAnswerForm = document.getElementById("SubmitAnswerForm");
@@ -20,13 +20,15 @@ const timer = document.getElementById("timer");
 const ShowScore = document.getElementById("ShowScore");
 const EndQuizButton = document.getElementById("EndQuizButton");
 
-// Set Global Variables
+/// Global Variables ///
 var UserHighScore = 0;
 var UserScore = 0;
 var qIndex = 0;
 let UserAnswer;
+var QuestionTimer = 10;
+var timerInterval;
 
-// Create array of questions and answers
+/// Questions Array ///
 let questions = [
     {
         question: "What is HTML?",
@@ -142,9 +144,7 @@ let questions = [
     },
 ]
 
-// Question Timer
-var QuestionTimer = 10;
-var timerInterval
+/// Question Timer ///
 function setTime() {
   timerInterval = setInterval(function() {
     QuestionTimer--;
@@ -161,7 +161,7 @@ function setTime() {
   }, 1000);
 }
 
-// Start Quiz
+/// Start Quiz ///
 function StartQuiz() {
     StartQuizButton.classList.add("hidden");
     ShowHighScore.classList.add("hidden");
@@ -171,7 +171,7 @@ function StartQuiz() {
     GenerateQuestion(qIndex);
 }
 
-// Generate new function
+/// Generate Question ///
 function GenerateQuestion(qIndex) {
     timer.classList.remove("hidden");
     timer.classList.add("timer");
@@ -239,7 +239,7 @@ function GenerateQuestion(qIndex) {
     }
 }
 
-// Navigate to next question
+/// Next Question ///
 function NextQuestion() {
     QuestionTimer = 10;
     ShowCorrectAnswer.classList.remove("AnswerIncorrect")
@@ -251,21 +251,21 @@ function NextQuestion() {
     // Generate new question
     if (qIndex < questions.length) {
         qIndex++
+        GenerateQuestion(qIndex);
     }
-    GenerateQuestion(qIndex);
 }
 
-// Cancel the quiz and start over
+/// Cancel Quiz ///
 function CancelQuiz() {
+    // QuestionTimer = 10;
     timer.classList.add("hidden");
     SubmitAnswerForm.classList.add("hidden");
     clearInterval(timerInterval);
-    QuestionTimer = 10;
     CancelQuizButton.classList.add("hidden");
     EndQuiz()
 }
 
-// End Quiz
+/// End Quiz ///
 function EndQuiz() {
     StartQuizButton.classList.remove("hidden");
     EndQuizButton.classList.remove("hidden");
@@ -280,14 +280,15 @@ function EndQuiz() {
         UserHighScore = UserScore;
     }
     ShowHighScore.innerHTML = "Your high score is: " + UserHighScore + " / " + questions.length + 
-    "<br> High Score Percentage: " + UserHighScore / questions.length * 100 + "%"
+    "<br> High Score Percentage: " + Math.floor(UserHighScore / questions.length * 100) + "%"
     ShowHighScore.classList.remove("hidden");
     ShowHighScore.classList.add("ShowHighScore");
     UpdateCache();
 }
 
-// Clears cache so the quiz will start over if the press the start quiz button and resets the user score to 0 so it does not loop
+/// Update Cache ///
 function UpdateCache() {
     UserScore = 0;
     qIndex = 0;
+    QuestionTimer = 10;
 }
