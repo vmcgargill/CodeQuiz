@@ -19,6 +19,7 @@ const NextQuestionButton = document.getElementById("NextQuestionButton");
 const timer = document.getElementById("timer");
 const ShowScore = document.getElementById("ShowScore");
 const EndQuizButton = document.getElementById("EndQuizButton");
+const ProgressBar = document.getElementById("ProgressBar");
 
 /// Global Variables ///
 var UserHighScore = 0;
@@ -241,7 +242,7 @@ function setTime() {
     if(QuestionTimer === 0) {
       clearInterval(timerInterval);
       alert("You ran out of time to answer the question!");
-      timer.textContent = ""
+      timer.textContent = " seconds left to answer."
       UserAnswer = "null";
       SubmitAnswerButton.onclick();
     }
@@ -276,7 +277,7 @@ function GenerateQuestion(qIndex) {
     /// Check Answer ///
     let CorrectAnswer = questions[qIndex].answer
     SubmitAnswerButton.onclick = function CheckAnswer() {
-        timer.textContent = ""
+        timer.textContent = " seconds left to answer."
         clearInterval(timerInterval);
         timer.classList.add("hidden");
         for (var checkedAnswer of AnswerForm) {

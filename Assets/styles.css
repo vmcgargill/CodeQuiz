@@ -103,10 +103,8 @@ h2, input, label {
     text-align: center;
 }
 
-.timer {
-    text-align: center;
+.TimerDiv {
     background-color: rgb(30, 30, 97); 
-    color: white;
     box-shadow: 0 0 15px 2px black;
     border-radius: 30px 30px 30px 30px;
     width: 50%;
@@ -114,6 +112,26 @@ h2, input, label {
     margin: auto;
     max-height: 100%;
     transition-duration: 0.75s;
+    padding: 25px;
+}
+
+.timer {
+    color: white;
+    text-align: center;
+    margin: auto;
+    margin-top: 5px;
+    /* position: relative; */
+    padding: 25px;
+}
+
+.ProgressBar {
+    background-color: red;
+    box-shadow: 0 0 15px 2px black;
+    border-radius: 30px 30px 30px 30px;
+    height: 25px;
+    margin: auto;
+    width: 75%;
+    max-height: 100%;
 }
 
 .timer:hover {
@@ -155,5 +173,8 @@ h2, input, label {
     }
     .btn {
         font-size: 15px;
+    }
+    .timer {
+        padding: 10px;
     }
 }
