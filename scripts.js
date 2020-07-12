@@ -184,8 +184,9 @@ function NextQuestion() {
 
 // Cancel the quiz and start over
 function CancelQuiz() {
-    alert("Hello world! This does not do anything yet.")
-    // SubmitAnswerForm.classList.add("hidden");
+    // alert("Hello world! This does not do anything yet.")
+    SubmitAnswerForm.classList.add("hidden");
+    EndQuiz()
 }
 
 // End Quiz
@@ -198,7 +199,7 @@ function EndQuiz() {
     ShowCorrectAnswer.classList.remove("AnswerCorrect")
     NextQuestionButton.classList.add("hidden");
     EndQuizButton.classList.add("hidden");
-    alert("Your final score was: " + UserScore + " / " + questions.length);
+    alert("End of the quiz. Your final score was: " + UserScore + " / " + questions.length);
     
     if (UserScore >= UserHighScore) {
         UserHighScore = UserScore;
@@ -209,6 +210,7 @@ function EndQuiz() {
     UpdateCache();
 }
 
+// Clears cache so the quiz will start over if the press the start quiz button and resets the user score to 0 so it does not loop
 function UpdateCache() {
     UserScore = 0;
     qIndex = 0;
