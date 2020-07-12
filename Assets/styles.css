@@ -50,9 +50,17 @@ body {
     background-color: rgb(85, 115, 248);
 }
 
-
 .btn:active {
-    background-color: darkblue;
+    background-color: rgb(0, 0, 71);
+}
+
+#CancelQuizButton:hover, #EndQuizButton:hover {
+    background-color: rgb(243, 71, 71);
+}
+
+
+#CancelQuizButton:active, #EndQuizButton:active {
+    background-color: rgb(255, 146, 146);
 }
 
 #StartQuizButton {
@@ -60,12 +68,12 @@ body {
 }
 
 #CancelQuizButton {
-    background-color: darkred;
+    background-color: rgb(139, 0, 0);
     margin-top: 0px;
 }
 
 #EndQuizButton {
-    background-color: darkred;
+    background-color: rgb(139, 0, 0);
 }
 
 .ShowHighScore {
@@ -105,8 +113,12 @@ h2, input, label {
     height: 100px;
     margin: auto;
     max-height: 100%;
+    transition-duration: 0.75s;
 }
 
+.timer:hover {
+    background-color: rgb(85, 115, 248);
+}
 
 #ShowCorrectAnswer {
     margin: auto;

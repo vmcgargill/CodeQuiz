@@ -107,7 +107,39 @@ let questions = [
         C: "By using runtime environments such as node.js",
         D: "By running a function outside of object oriented programming",
         answer: "By using runtime environments such as node.js"
-    }
+    },
+    {
+        question: "What is bootstrap?",
+        A: "Desktop app",
+        B: "Web app",
+        C: "Open source CSS framework for responsive websites",
+        D: "A strap for your boot",
+        answer: "Open source CSS framework for responsive websites"
+    },
+    {
+        question: "What is a JavaScript Array?",
+        A: "A collection",
+        B: "A feature on GitHub",
+        C: "Stores objects with collection of the same elements",
+        D: "Website feature",
+        answer: "Stores objects with collection of the same elements"
+    },
+    {
+        question: "What is a JavaScript Object?",
+        A: "A div container",
+        B: "Collection of properties with names, keys, and values",
+        C: "An image URL",
+        D: "Database",
+        answer: "Collection of properties with names, keys, and values"
+    },
+    {
+        question: "What is a JavaScript Object?",
+        A: "A div container",
+        B: "Collection of properties with names, keys, and values",
+        C: "An image URL",
+        D: "Database",
+        answer: "Collection of properties with names, keys, and values"
+    },
 ]
 
 // Question Timer
