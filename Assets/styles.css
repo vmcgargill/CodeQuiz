@@ -10,19 +10,6 @@ header {
     border-radius: 30px 30px 30px 30px;
 }
 
-.timer {
-    text-align: center;
-    background-color: rgb(30, 30, 97); 
-    color: white;
-    box-shadow: 0 0 15px 2px black;
-    border-radius: 30px 30px 30px 30px;
-    width: 50%;
-    height: 100px;
-    margin: auto;
-    max-height: 100%;
-    
-}
-
 body {
     background-color: darkgray;
     font-family: "Arial Black", Gadget, sans-serif;
@@ -37,12 +24,16 @@ body {
     box-shadow: 0 0 15px 2px;
 }
 
-#SubmitAnswerForm {
-    padding: 10px;
-    margin: 10px;
+.hidden {
+    display: none;
 }
 
 .btn {
+    margin: auto;
+    position: relative;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
     padding: 10px; 
     min-width: 300px;
     font-size: 30px;
@@ -63,7 +54,7 @@ body {
     background-color: darkblue;
 }
 
-#StartQuizButton, #NextQuestionButton, #EndQuizButton {
+#StartQuizButton, #NextQuestionButton, #EndQuizButton, #SubmitAnswerButton, #CancelQuizButton {
     margin: 0;
     margin-top: 150px;
     margin-bottom: 50px;
@@ -73,44 +64,13 @@ body {
     transform: translate(-50%, -50%);
 }
 
-#SubmitAnswerButton {
-    margin: 30px;
-    margin-left: 20%; 
-}
-
 #CancelQuizButton {
     background-color: darkred;
-    margin: 30px;
-    margin-left: 20%; 
+    
 }
 
 #EndQuizButton {
     background-color: darkred;
-}
-
-
-h2, input, label {
-    position: relative;
-    left: auto;
-    font-size: 25px;
-    margin: 10px;
-    text-align: center;
-}
-
-
-
-#QuizFooter {
-    color: white; 
-    background-color: rgb(30, 30, 97);
-    text-align: center; 
-    padding: 30px;
-    font-family: "Arial Black", Gadget, sans-serif;
-    box-shadow: 0 0 15px 2px black;
-    border-radius: 30px 30px 30px 30px;
-}
-
-.hidden {
-    display: none;
 }
 
 .ShowHighScore {
@@ -127,6 +87,32 @@ h2, input, label {
     box-shadow: 0 0 15px 2px;
 }
 
+#SubmitAnswerForm {
+    padding: 10px;
+    margin: 10px;
+}
+
+h2, input, label {
+    position: relative;
+    left: auto;
+    font-size: 25px;
+    margin: 10px;
+    text-align: center;
+}
+
+.timer {
+    text-align: center;
+    background-color: rgb(30, 30, 97); 
+    color: white;
+    box-shadow: 0 0 15px 2px black;
+    border-radius: 30px 30px 30px 30px;
+    width: 50%;
+    height: 100px;
+    margin: auto;
+    max-height: 100%;
+}
+
+
 #ShowCorrectAnswer {
     margin: auto;
     width: 50%;
@@ -139,20 +125,28 @@ h2, input, label {
 .AnswerCorrect {
     border: 3px solid green;
     color: green;
-  }
+}
 
 .AnswerIncorrect {
     border: 3px solid red;
     color: red;
-  }
+}
 
-  
-  
-  @media screen and (max-width: 1000px) {
+#QuizFooter {
+    color: white; 
+    background-color: rgb(30, 30, 97);
+    text-align: center; 
+    padding: 30px;
+    font-family: "Arial Black", Gadget, sans-serif;
+    box-shadow: 0 0 15px 2px black;
+    border-radius: 30px 30px 30px 30px;
+}
+
+@media screen and (max-width: 1000px) {
     h2, input, label, #ShowCorrectAnswer, .ShowHighScore, .btn {
         font-size: 15px;
     }
     .btn {
         font-size: 15px;
     }
-  }
+}

@@ -77,7 +77,7 @@ let questions = [
         answer: "JavaScript Object Notation"
     },
     {
-        question: "What does Object Oriented Programming mean?",
+        question: "What is Object Oriented Programming?",
         A: "A programming paradigm that involves objects and datasets",
         B: "An application that uses physical objects",
         C: "A website that displays pictures of objects",
@@ -110,9 +110,9 @@ let questions = [
     }
 ]
 
+// Question Timer
 var QuestionTimer = 10;
 var timerInterval
-
 function setTime() {
   timerInterval = setInterval(function() {
     QuestionTimer--;
@@ -134,6 +134,8 @@ function StartQuiz() {
     StartQuizButton.classList.add("hidden");
     ShowHighScore.classList.add("hidden");
     SubmitAnswerForm.classList.remove("hidden");
+    CancelQuizButton.classList.remove("hidden");
+    CancelQuizButton.classList.add("btn");
     GenerateQuestion(qIndex);
 }
 
@@ -152,6 +154,7 @@ function GenerateQuestion(qIndex) {
     D.value = questions[qIndex].D;
     LD.innerHTML = questions[qIndex].D;
 
+    // Check for correct answer on click
     let CorrectAnswer = questions[qIndex].answer
     SubmitAnswerButton.onclick = function CheckAnswer() {
         timer.textContent = ""
@@ -161,6 +164,8 @@ function GenerateQuestion(qIndex) {
             if (checkedAnswer.checked) {
                 UserAnswer = checkedAnswer.value;
                 break;
+            } else {
+                UserAnswer = "null";
             }
         }
         
@@ -168,25 +173,28 @@ function GenerateQuestion(qIndex) {
         ShowCorrectAnswer.classList.remove("hidden");
         checkedAnswer.checked = false;
         
+        // If statements that show the correct answer
         if (QuestionTimer == 0 && UserAnswer == CorrectAnswer) {
             ShowCorrectAnswer.classList.add("AnswerCorrect");
-            ShowCorrectAnswer.innerText = "You ran out of time, but the correct answer was already selected and still counts. The correct answer is: " + questions[qIndex].answer
+            ShowCorrectAnswer.innerText = "You ran out of time! But the correct answer is selected and counts. The correct answer is: " + questions[qIndex].answer
             UserScore++
         } else if (UserAnswer == CorrectAnswer) {
             ShowCorrectAnswer.classList.add("AnswerCorrect");
-            ShowCorrectAnswer.innerText = "That is correct! The answer is " + questions[qIndex].answer
+            ShowCorrectAnswer.innerText = "That is correct! The answer is: " + questions[qIndex].answer
             UserScore++
         }
         else if (UserAnswer == "null") {
             ShowCorrectAnswer.classList.add("AnswerIncorrect");
-            ShowCorrectAnswer.innerText = 'Sorry but you ran out of time to answer the question. The correct answer is "' 
+            ShowCorrectAnswer.innerText = 'Sorry but the question was marked wrong because there was no answer selected. The correct answer is: "' 
             + questions[qIndex].answer + '".'
         } else {
             ShowCorrectAnswer.classList.add("AnswerIncorrect");
-            ShowCorrectAnswer.innerText = 'That is incorrect! The answer is not "' + UserAnswer +  
+            ShowCorrectAnswer.innerText = 'That is incorrect! The answer is not: "' + UserAnswer +  
             '". The correct answer is "' + questions[qIndex].answer + '".'
         }
-
+        
+        // If statement that either shows the next button or shows the end quiz button
+        // We have to add 1 to qIndex because the array starts at 0 and questions.length starts at 1
         if (qIndex + 1 < questions.length) {
             NextQuestionButton.classList.remove("hidden");
             NextQuestionButton.classList.add("btn");
@@ -207,10 +215,10 @@ function NextQuestion() {
     NextQuestionButton.classList.add("hidden");
     SubmitAnswerForm.classList.remove("hidden");
 
+    // Generate new question
     if (qIndex < questions.length) {
         qIndex++
     }
-    
     GenerateQuestion(qIndex);
 }
 
@@ -220,6 +228,7 @@ function CancelQuiz() {
     SubmitAnswerForm.classList.add("hidden");
     clearInterval(timerInterval);
     QuestionTimer = 10;
+    CancelQuizButton.classList.add("hidden");
     EndQuiz()
 }
 
@@ -234,7 +243,6 @@ function EndQuiz() {
     NextQuestionButton.classList.add("hidden");
     EndQuizButton.classList.add("hidden");
     alert("End of the quiz. Your final score was: " + UserScore + " / " + questions.length);
-    
     if (UserScore >= UserHighScore) {
         UserHighScore = UserScore;
     }
