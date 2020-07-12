@@ -120,8 +120,10 @@ function setTime() {
 
     if(QuestionTimer === 0) {
       clearInterval(timerInterval);
-      alert("You ran out of time!");
+      alert("You ran out of time to answer the question!");
       timer.textContent = ""
+      UserAnswer = "null";
+      SubmitAnswerButton.onclick();
     }
 
   }, 1000);
@@ -151,12 +153,9 @@ function GenerateQuestion(qIndex) {
     LD.innerHTML = questions[qIndex].D;
 
     let CorrectAnswer = questions[qIndex].answer
-
-        
     SubmitAnswerButton.onclick = function CheckAnswer() {
         timer.textContent = ""
         clearInterval(timerInterval);
-        // timer.textContent = "Time is up!"
         timer.classList.add("hidden");
         for (var checkedAnswer of AnswerForm) {
             if (checkedAnswer.checked) {
@@ -168,13 +167,21 @@ function GenerateQuestion(qIndex) {
         SubmitAnswerForm.classList.add("hidden");
         ShowCorrectAnswer.classList.remove("hidden");
         checkedAnswer.checked = false;
-                
-        if (UserAnswer == CorrectAnswer) {
+        
+        if (QuestionTimer == 0 && UserAnswer == CorrectAnswer) {
+            ShowCorrectAnswer.classList.add("AnswerCorrect");
+            ShowCorrectAnswer.innerText = "You ran out of time, but the correct answer was already selected and still counts. The correct answer is: " + questions[qIndex].answer
+            UserScore++
+        } else if (UserAnswer == CorrectAnswer) {
             ShowCorrectAnswer.classList.add("AnswerCorrect");
             ShowCorrectAnswer.innerText = "That is correct! The answer is " + questions[qIndex].answer
             UserScore++
-        } 
-        else {
+        }
+        else if (UserAnswer == "null") {
+            ShowCorrectAnswer.classList.add("AnswerIncorrect");
+            ShowCorrectAnswer.innerText = 'Sorry but you ran out of time to answer the question. The correct answer is "' 
+            + questions[qIndex].answer + '".'
+        } else {
             ShowCorrectAnswer.classList.add("AnswerIncorrect");
             ShowCorrectAnswer.innerText = 'That is incorrect! The answer is not "' + UserAnswer +  
             '". The correct answer is "' + questions[qIndex].answer + '".'
@@ -209,8 +216,10 @@ function NextQuestion() {
 
 // Cancel the quiz and start over
 function CancelQuiz() {
-    // alert("Hello world! This does not do anything yet.")
+    timer.classList.add("hidden");
     SubmitAnswerForm.classList.add("hidden");
+    clearInterval(timerInterval);
+    QuestionTimer = 10;
     EndQuiz()
 }
 
@@ -229,7 +238,8 @@ function EndQuiz() {
     if (UserScore >= UserHighScore) {
         UserHighScore = UserScore;
     }
-    ShowHighScore.innerHTML = "Your high score is: " + UserHighScore + " / " + questions.length
+    ShowHighScore.innerHTML = "Your high score is: " + UserHighScore + " / " + questions.length + 
+    "<br> High Score Percentage: " + UserHighScore / questions.length * 100 + "%"
     ShowHighScore.classList.remove("hidden");
     ShowHighScore.classList.add("ShowHighScore");
     UpdateCache();

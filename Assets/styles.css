@@ -19,9 +19,8 @@ header {
     width: 50%;
     height: 100px;
     margin: auto;
-    /* margin-bottom: 50px; */
-    /* position: relative; */
-    /* left: 50%; */
+    max-height: 100%;
+    
 }
 
 body {
