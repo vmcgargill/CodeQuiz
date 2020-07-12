@@ -120,68 +120,75 @@ let UserAnswer;
 
 
 
+var qIndex = 0;
+
+
+
 // Start Quiz
 function StartQuiz() {
 
     StartQuizButton.classList.add("hidden");
     ShowHighScore.classList.add("hidden");
-    GenerateQuestion()
+    SubmitAnswerForm.classList.remove("hidden");
+    NextQuestionButton.classList.add("btn");
+    GenerateQuestion(qIndex);
 }
 
 
-function GenerateQuestion() {
-    SubmitAnswerForm.classList.remove("hidden");
-    for (var qIndex = 0; qIndex < questions.length; qIndex++) {
-        var QI = Math.floor(Math.random() * qIndex); 
+function GenerateQuestion(qIndex) {
 
-        QuizQuestion.innerHTML = questions[QI].question;
-        A.value = questions[QI].A;
-        LA.innerHTML = questions[QI].A;
-        B.value = questions[QI].B;
-        LB.innerHTML = questions[QI].B;
-        C.value = questions[QI].C;
-        LC.innerHTML = questions[QI].C;
-        D.value = questions[QI].D;
-        LD.innerHTML = questions[QI].D;
+    QuizQuestion.innerHTML = questions[qIndex].question;
+    A.value = questions[qIndex].A;
+    LA.innerHTML = questions[qIndex].A;
+    B.value = questions[qIndex].B;
+    LB.innerHTML = questions[qIndex].B;
+    C.value = questions[qIndex].C;
+    LC.innerHTML = questions[qIndex].C;
+    D.value = questions[qIndex].D;
+    LD.innerHTML = questions[qIndex].D;
+
+    let CorrectAnswer = questions[qIndex].answer
         
-        let CorrectAnswer = questions[QI].answer
-        // let UserAnser;
-        
-        SubmitAnswerButton.onclick = function CheckAnswer() {
-            for (var checkedAnswer of AnswerForm) {
-                if (checkedAnswer.checked) {
-                    UserAnswer = checkedAnswer.value;
-                    break;
-                }
+    SubmitAnswerButton.onclick = function CheckAnswer() {
+        for (var checkedAnswer of AnswerForm) {
+            if (checkedAnswer.checked) {
+                UserAnswer = checkedAnswer.value;
+                break;
             }
-                
-            SubmitAnswerForm.classList.add("hidden");
-            ShowCorrectAnswer.classList.remove("hidden");
-            NextQuestionButton.classList.remove("hidden");
-            NextQuestionButton.classList.add("btn")
-                
-                
-            if (UserAnswer == CorrectAnswer) {
-                ShowCorrectAnswer.classList.add("AnswerCorrect");
-                ShowCorrectAnswer.innerText = "That is correct! The answer is " + questions[QI].answer
-                UserScore += 1
-                console.log(UserAnswer)
-            } else {
-                ShowCorrectAnswer.classList.add("AnswerIncorrect");
-                ShowCorrectAnswer.innerText = 'That is incorrect! The answer is not "' + UserAnswer +  '". The correct answer is "' + questions[QI].answer + '".'
-            }
-            checkedAnswer.checked = false;
         }
+                
+        SubmitAnswerForm.classList.add("hidden");
+        ShowCorrectAnswer.classList.remove("hidden");
+        NextQuestionButton.classList.remove("hidden");
+        NextQuestionButton.classList.add("btn")
+                
+                
+        if (UserAnswer == CorrectAnswer) {
+            ShowCorrectAnswer.classList.add("AnswerCorrect");
+            ShowCorrectAnswer.innerText = "That is correct! The answer is " + questions[qIndex].answer
+            UserScore += 1
+            console.log(UserAnswer)
+        } else {
+            ShowCorrectAnswer.classList.add("AnswerIncorrect");
+            ShowCorrectAnswer.innerText = 'That is incorrect! The answer is not "' + UserAnswer +  '". The correct answer is "' + questions[qIndex].answer + '".'
+        }
+        checkedAnswer.checked = false;
     }
 }
 
 
 function NextQuestion() {
+    if (qIndex < questions.length) {
+        qIndex++
+        GenerateQuestion(qIndex);
+    } else {
+        alert("End game!!")
+    }
+    ShowCorrectAnswer.classList.remove("AnswerIncorrect")
+    ShowCorrectAnswer.classList.remove("AnswerCorrect")
     ShowCorrectAnswer.classList.add("hidden");
     NextQuestionButton.classList.add("hidden");
     SubmitAnswerForm.classList.remove("hidden");
-    ShowCorrectAnswer.classList.remove("AnswerIncorrect")
-    GenerateQuestion();
 }
 
 
