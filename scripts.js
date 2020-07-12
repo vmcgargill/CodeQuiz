@@ -16,6 +16,7 @@ const SubmitAnswerButton = document.getElementById("SubmitAnswerButton");
 const CancelQuizButton = document.getElementById("CancelQuizButton");
 const ShowCorrectAnswer = document.getElementById("ShowCorrectAnswer");
 const NextQuestionButton = document.getElementById("NextQuestionButton");
+const timer = document.getElementById("timer");
 const ShowScore = document.getElementById("ShowScore");
 const EndQuizButton = document.getElementById("EndQuizButton");
 
@@ -76,7 +77,7 @@ let questions = [
         answer: "JavaScript Object Notation"
     },
     {
-        question: "What does Object Oriented Programming means?",
+        question: "What does Object Oriented Programming mean?",
         A: "A programming paradigm that involves objects and datasets",
         B: "An application that uses physical objects",
         C: "A website that displays pictures of objects",
@@ -84,7 +85,7 @@ let questions = [
         answer: "A programming paradigm that involves objects and datasets"
     },
     {
-        question: "What is 'git' ?",
+        question: "What is git?",
         A: "The word 'get' but mispelled",
         B: "A programming language",
         C: "Distributed version control system that tracks changes",
@@ -109,6 +110,23 @@ let questions = [
     }
 ]
 
+var QuestionTimer = 10;
+var timerInterval
+
+function setTime() {
+  timerInterval = setInterval(function() {
+    QuestionTimer--;
+    timer.textContent = QuestionTimer + " seconds left to answer.";
+
+    if(QuestionTimer === 0) {
+      clearInterval(timerInterval);
+      alert("You ran out of time!");
+      timer.textContent = ""
+    }
+
+  }, 1000);
+}
+
 // Start Quiz
 function StartQuiz() {
     StartQuizButton.classList.add("hidden");
@@ -119,7 +137,9 @@ function StartQuiz() {
 
 // Generate new function
 function GenerateQuestion(qIndex) {
-    
+    timer.classList.remove("hidden");
+    timer.classList.add("timer");
+    setTime();
     QuizQuestion.innerHTML = questions[qIndex].question;
     A.value = questions[qIndex].A;
     LA.innerHTML = questions[qIndex].A;
@@ -131,8 +151,13 @@ function GenerateQuestion(qIndex) {
     LD.innerHTML = questions[qIndex].D;
 
     let CorrectAnswer = questions[qIndex].answer
+
         
     SubmitAnswerButton.onclick = function CheckAnswer() {
+        timer.textContent = ""
+        clearInterval(timerInterval);
+        // timer.textContent = "Time is up!"
+        timer.classList.add("hidden");
         for (var checkedAnswer of AnswerForm) {
             if (checkedAnswer.checked) {
                 UserAnswer = checkedAnswer.value;
@@ -168,7 +193,7 @@ function GenerateQuestion(qIndex) {
 
 // Navigate to next question
 function NextQuestion() {
-
+    QuestionTimer = 10;
     ShowCorrectAnswer.classList.remove("AnswerIncorrect")
     ShowCorrectAnswer.classList.remove("AnswerCorrect")
     ShowCorrectAnswer.classList.add("hidden");

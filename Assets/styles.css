@@ -10,6 +10,20 @@ header {
     border-radius: 30px 30px 30px 30px;
 }
 
+.timer {
+    text-align: center;
+    background-color: rgb(30, 30, 97); 
+    color: white;
+    box-shadow: 0 0 15px 2px black;
+    border-radius: 30px 30px 30px 30px;
+    width: 50%;
+    height: 100px;
+    margin: auto;
+    /* margin-bottom: 50px; */
+    /* position: relative; */
+    /* left: 50%; */
+}
+
 body {
     background-color: darkgray;
     font-family: "Arial Black", Gadget, sans-serif;
