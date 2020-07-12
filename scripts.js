@@ -16,6 +16,7 @@ const SubmitAnswerButton = document.getElementById("SubmitAnswerButton");
 const CancelQuizButton = document.getElementById("CancelQuizButton");
 const ShowCorrectAnswer = document.getElementById("ShowCorrectAnswer");
 const NextQuestionButton = document.getElementById("NextQuestionButton");
+const ShowScore = document.getElementById("ShowScore");
 const EndQuizButton = document.getElementById("EndQuizButton");
 
 // Set Global Variables
@@ -113,7 +114,6 @@ function StartQuiz() {
     StartQuizButton.classList.add("hidden");
     ShowHighScore.classList.add("hidden");
     SubmitAnswerForm.classList.remove("hidden");
-    NextQuestionButton.classList.add("btn");
     GenerateQuestion(qIndex);
 }
 
@@ -139,39 +139,47 @@ function GenerateQuestion(qIndex) {
                 break;
             }
         }
-                
+        
         SubmitAnswerForm.classList.add("hidden");
         ShowCorrectAnswer.classList.remove("hidden");
-        NextQuestionButton.classList.remove("hidden");
-        NextQuestionButton.classList.add("btn")
-                
+        checkedAnswer.checked = false;
                 
         if (UserAnswer == CorrectAnswer) {
             ShowCorrectAnswer.classList.add("AnswerCorrect");
             ShowCorrectAnswer.innerText = "That is correct! The answer is " + questions[qIndex].answer
             UserScore++
-            console.log(UserAnswer)
-        } else {
+        } 
+        else {
             ShowCorrectAnswer.classList.add("AnswerIncorrect");
-            ShowCorrectAnswer.innerText = 'That is incorrect! The answer is not "' + UserAnswer +  '". The correct answer is "' + questions[qIndex].answer + '".'
+            ShowCorrectAnswer.innerText = 'That is incorrect! The answer is not "' + UserAnswer +  
+            '". The correct answer is "' + questions[qIndex].answer + '".'
         }
-        checkedAnswer.checked = false;
+
+        if (qIndex + 1 < questions.length) {
+            NextQuestionButton.classList.remove("hidden");
+            NextQuestionButton.classList.add("btn");
+        } else {
+            NextQuestionButton.classList.add("hidden");
+            EndQuizButton.classList.remove("hidden");
+            EndQuizButton.classList.add("btn");
+        }
     }
 }
 
 // Navigate to next question
 function NextQuestion() {
-    if (qIndex < questions.length) {
-        qIndex++
-        GenerateQuestion(qIndex);
-    } else {
-        alert("End game!! Your score was: " + UserScore)
-    }
+
     ShowCorrectAnswer.classList.remove("AnswerIncorrect")
     ShowCorrectAnswer.classList.remove("AnswerCorrect")
     ShowCorrectAnswer.classList.add("hidden");
     NextQuestionButton.classList.add("hidden");
     SubmitAnswerForm.classList.remove("hidden");
+
+    if (qIndex < questions.length) {
+        qIndex++
+    }
+    
+    GenerateQuestion(qIndex);
 }
 
 // Cancel the quiz and start over
@@ -183,9 +191,25 @@ function CancelQuiz() {
 // End Quiz
 function EndQuiz() {
     StartQuizButton.classList.remove("hidden");
-    ShowHighScore.classList.remove("hidden");
     EndQuizButton.classList.remove("hidden");
     EndQuizButton.classList.add("btn")
     ShowCorrectAnswer.classList.add("hidden");
+    ShowCorrectAnswer.classList.remove("AnswerIncorrect")
+    ShowCorrectAnswer.classList.remove("AnswerCorrect")
     NextQuestionButton.classList.add("hidden");
+    EndQuizButton.classList.add("hidden");
+    alert("Your final score was: " + UserScore + " / " + questions.length);
+    
+    if (UserScore >= UserHighScore) {
+        UserHighScore = UserScore;
+    }
+    ShowHighScore.innerHTML = "Your high score is: " + UserHighScore + " / " + questions.length
+    ShowHighScore.classList.remove("hidden");
+    ShowHighScore.classList.add("ShowHighScore");
+    UpdateCache();
+}
+
+function UpdateCache() {
+    UserScore = 0;
+    qIndex = 0;
 }

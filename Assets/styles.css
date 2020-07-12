@@ -13,6 +13,7 @@ body {
     background-color: lightgray;
     margin: 5%;
     height: 750px;
+    border-radius: 15px 15px 15px 15px;
 }
 
 #SubmitAnswerForm {
@@ -28,11 +29,13 @@ body {
     background-color: blue; 
 }
 
-#StartQuizButton:hover, #SubmitAnswerButton:hover, #CancelQuizButton:hover {
+#StartQuizButton:hover, #SubmitAnswerButton:hover, #CancelQuizButton:hover,
+#NextQuestionButton:hover, #EndQuizButton:hover {
     background-color: rgb(85, 115, 248);
 }
 
-#StartQuizButton:active, #SubmitAnswerButton:active, #CancelQuizButton:active {
+#StartQuizButton:active, #SubmitAnswerButton:active, #CancelQuizButton:active,
+#NextQuestionButton:active, #EndQuizButton:active {
     background-color: darkblue;
 }
 
@@ -55,6 +58,10 @@ body {
     background-color: darkred;
     margin: 30px;
     margin-left: 20%; 
+}
+
+#EndQuizButton {
+    background-color: darkred;
 }
 
 
@@ -105,6 +112,7 @@ label {
     border: 3px solid green;
     color: green;
   }
+
 .AnswerIncorrect {
     border: 3px solid red;
     color: red;
