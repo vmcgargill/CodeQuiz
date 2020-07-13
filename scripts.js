@@ -356,7 +356,7 @@ function CancelQuiz() {
     CancelQuizButton.classList.add("hidden");
     EndQuiz()
 }
-
+//
 /// End Quiz ///
 function EndQuiz() {
     StartQuizButton.classList.remove("hidden");
