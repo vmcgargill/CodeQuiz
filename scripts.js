@@ -383,4 +383,6 @@ function UpdateCache() {
     UserScore = 0;
     qIndex = 0;
     QuestionTimer = 10;
+    Timer.textContent = "10 seconds left to answer."
+    Progress.style.width = 100 + "%";
 }
