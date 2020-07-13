@@ -354,6 +354,8 @@ function CancelQuiz() {
     SubmitAnswerForm.classList.add("hidden");
     clearInterval(timerInterval);
     CancelQuizButton.classList.add("hidden");
+    Timer.textContent = "10 seconds left to answer."
+    Progress.style.width = 100 + "%";
     EndQuiz()
 }
 
@@ -367,6 +369,8 @@ function EndQuiz() {
     ShowCorrectAnswer.classList.remove("AnswerCorrect")
     NextQuestionButton.classList.add("hidden");
     EndQuizButton.classList.add("hidden");
+    Timer.textContent = "10 seconds left to answer."
+    Progress.style.width = 100 + "%";
     alert("End of the quiz. Your final score was: " + UserScore + " / " + questions.length);
     if (UserScore >= UserHighScore) {
         UserHighScore = UserScore;
@@ -383,6 +387,4 @@ function UpdateCache() {
     UserScore = 0;
     qIndex = 0;
     QuestionTimer = 10;
-    Timer.textContent = "10 seconds left to answer."
-    Progress.style.width = 100 + "%";
 }
