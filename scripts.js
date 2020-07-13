@@ -260,10 +260,10 @@ function StartQuiz() {
 
     // For loop that randomly shuffles order of array so question order is always different everytime new quiz starts.
     for(let i = questions.length - 1; i > 0; i--){
-        const questionsShuffled = Math.floor(Math.random() * i)
-        const temparray = questions[i]
-        questions[i] = questions[j]
-        questions[questionsShuffled] = temparray
+        const questionsshuffled = Math.floor(Math.random() * i)
+        const tempquestions = questions[i]
+        questions[i] = questions[questionsshuffled]
+        questions[questionsshuffled] = tempquestions
       }
 
 
