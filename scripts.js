@@ -31,7 +31,7 @@ var UserHighScore = 0;
 var UserScore = 0;
 var qIndex = 0;
 let UserAnswer;
-var QuestionTimer = 10;
+var QuestionTimer = 15;
 var timerInterval;
 
 /// Questions Array ///
@@ -377,25 +377,22 @@ let questions = [
     }
 ]
 
-
-
 /// Question Timer ///
 function setTime() {
   timerInterval = setInterval(function() {
     QuestionTimer--;
     
-    if (QuestionTimer <= 10) {
-        Progress.style.width = 10 * QuestionTimer + "%";
+    if (QuestionTimer <= 15) {
+        Progress.style.width = 6.67 * QuestionTimer + "%";
         Timer.textContent = QuestionTimer + " seconds left to answer.";
     } 
     if (QuestionTimer === 0) {
         clearInterval(timerInterval);
         alert("You ran out of time to answer the question!");
-        Timer.textContent = "0 seconds left to answer."
         UserAnswer = "null";
         SubmitAnswerButton.onclick();
     } 
-  }, 1000);
+  }, 1500);
 }
 
 /// Start Quiz ///
@@ -442,7 +439,7 @@ function GenerateQuestion(qIndex) {
     /// Check Answer ///
     let CorrectAnswer = questions[qIndex].answer
     SubmitAnswerButton.onclick = function CheckAnswer() {
-        Timer.textContent = "10 seconds left to answer."
+        Timer.textContent = "15 seconds left to answer."
         clearInterval(timerInterval);
 
         for (var checkedAnswer of AnswerForm) {
@@ -490,7 +487,6 @@ function GenerateQuestion(qIndex) {
             NextQuestionButton.classList.remove("hidden");
             NextQuestionButton.classList.add("btn");
         } else {
-            NextQuestionButton.classList.add("hidden");
             CancelQuizButton.classList.add("hidden");
             EndQuizButton.classList.remove("hidden");
             EndQuizButton.classList.add("btn");
@@ -500,7 +496,7 @@ function GenerateQuestion(qIndex) {
 
 /// Next Question ///
 function NextQuestion() {
-    QuestionTimer = 10;
+    QuestionTimer = 15;
     ShowCorrectAnswer.classList.remove("AnswerIncorrect")
     ShowCorrectAnswer.classList.remove("AnswerCorrect")
     ShowCorrectAnswer.classList.add("hidden");
@@ -519,25 +515,20 @@ function CancelQuiz() {
     SubmitAnswerForm.classList.add("hidden");
     MultipleChoiceForm.classList.add("hidden");
     FillInBlankForm.classList.add("hidden");
-    clearInterval(timerInterval);
     CancelQuizButton.classList.add("hidden");
-    Timer.textContent = "10 seconds left to answer."
-    Progress.style.width = 100 + "%";
+    clearInterval(timerInterval);
     EndQuiz()
 }
 
 /// End Quiz ///
 function EndQuiz() {
-    StartQuizButton.classList.remove("hidden");
-    EndQuizButton.classList.remove("hidden");
-    EndQuizButton.classList.add("btn")
-    ShowCorrectAnswer.classList.add("hidden");
-    ShowCorrectAnswer.classList.remove("AnswerIncorrect")
-    ShowCorrectAnswer.classList.remove("AnswerCorrect")
-    NextQuestionButton.classList.add("hidden");
     EndQuizButton.classList.add("hidden");
-    Timer.textContent = "10 seconds left to answer."
-    Progress.style.width = 100 + "%";
+    ShowCorrectAnswer.classList.add("hidden");
+    ShowCorrectAnswer.classList.remove("AnswerCorrect")
+    ShowCorrectAnswer.classList.remove("AnswerIncorrect")
+    NextQuestionButton.classList.add("hidden");
+    StartQuizButton.classList.remove("hidden");
+    
     alert("End of the quiz. Your final score was: " + UserScore + " / " + questions.length);
     if (UserScore >= UserHighScore) {
         UserHighScore = UserScore;
@@ -546,12 +537,9 @@ function EndQuiz() {
     "<br> High Score Percentage: " + Math.floor(UserHighScore / questions.length * 100) + "%"
     ShowHighScore.classList.remove("hidden");
     ShowHighScore.classList.add("ShowHighScore");
-    UpdateCache();
-}
-
-/// Update Cache ///
-function UpdateCache() {
     UserScore = 0;
     qIndex = 0;
-    QuestionTimer = 10;
+    QuestionTimer = 15;
+    Timer.textContent = "15 seconds left to answer."
+    Progress.style.width = 100 + "%";
 }

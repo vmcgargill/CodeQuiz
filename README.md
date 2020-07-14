@@ -188,13 +188,7 @@ after the quiz is over so the user may view and try to beat
 their current high score. This function also runs 
 the UpdateCache function which updates the current game 
 cache so the user may start a new game if they want to 
-beat their old high score.
-
-
-## Update Cache
-
-
-The Update Cache function resets the current user score to 0 
+beat their old high score. This function also resets the current user score to 0 
 so that if the user starts over and starts a new quiz session, 
 their score is not looped over from the previous results. It 
 also resets the quiz index to 0 so the user may start over on a new 
