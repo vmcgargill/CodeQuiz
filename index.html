@@ -15,8 +15,14 @@
         <button id="StartQuizButton" class="btn" onClick="StartQuiz()">Start the Quiz</button>
         <!-- Show High Score-->
         <div id="ShowHighScore" class="hidden"></div>
-        <!-- Submit Answer Form -->
-        <div id="SubmitAnswerForm" class="hidden">
+        <!-- Fill In Blank Form -->
+        <div id="FillInBlankForm" class="hidden">
+            <h2 id="FillInQuestion"></h2>
+            <label for="FillInBlank">Answer:</label>
+            <input type="text" id="FillInBlank" onkeyup="this.value = this.value.toLowerCase();">
+        </div>
+        <!-- Multiple Choice Form -->
+        <div id="MultipleChoiceForm" class="hidden">
             <h2 id="QuizQuestion"></h2>
             <input type="radio" id="A" name="AnswerForm" value="A">
             <label for="A" id="LA"></label><br>
@@ -26,10 +32,13 @@
             <label for="C" id="LC"></label><br>
             <input type="radio" id="D" name="AnswerForm" value="D">
             <label for="D" id="LD"></label><br>
+        </div>
+        <!-- Submit Answer Form -->
+        <div id="SubmitAnswerForm" class="hidden">
             <button id="SubmitAnswerButton" class="btn">Submit Answer</button>
             <!-- Timer -->
             <div id="TimerDiv" class="TimerDiv">
-                <div id="Timer" class="hidden">10 seconds left to answer.</div>
+                <div id="Timer" class="Timer">10 seconds left to answer.</div>
                 <div id="ProgressBar" class="ProgressBar">
                     <div id="Progress" class="Progress"></div>
                 </div>

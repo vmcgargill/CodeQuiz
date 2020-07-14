@@ -2,6 +2,8 @@
 const StartQuizButton = document.getElementById("StartQuizButton");
 const ShowHighScore = document.getElementById("ShowHighScore");
 const SubmitAnswerForm = document.getElementById("SubmitAnswerForm");
+const FillInQuestion = document.getElementById("FillInQuestion");
+const FillInBlank = document.getElementById("FillInBlank");
 const QuizQuestion = document.getElementById("QuizQuestion");
 const AnswerForm = document.querySelectorAll('input[name="AnswerForm"]');
 const A = document.getElementById("A");
@@ -13,6 +15,8 @@ const LC = document.getElementById("LC");
 const D = document.getElementById("D");
 const LD = document.getElementById("LD");
 const SubmitAnswerButton = document.getElementById("SubmitAnswerButton");
+const FillInBlankForm = document.getElementById("FillInBlankForm");
+const MultipleChoiceForm = document.getElementById("MultipleChoiceForm");
 const CancelQuizButton = document.getElementById("CancelQuizButton");
 const ShowCorrectAnswer = document.getElementById("ShowCorrectAnswer");
 const NextQuestionButton = document.getElementById("NextQuestionButton");
@@ -63,6 +67,14 @@ let questions = [
         C: "Application Programming Interface",
         D: "HTML navigation bar",
         answer: "Application Programming Interface"
+    },
+    {
+        question: "What is an XML?",
+        A: "A runtime environment",
+        B: "Operating System",
+        C: "A company",
+        D: "Extensible Markup Language",
+        answer: "Extensible Markup Language"
     },
     {
         question: "What is Python?",
@@ -153,7 +165,7 @@ let questions = [
         answer: "All of the above"
     },
     {
-        question: "Which language is used to stlye a website?",
+        question: "Which language is used to style a website?",
         A: "HTML",
         B: "CSS",
         C: "JavaScript",
@@ -209,6 +221,14 @@ let questions = [
         answer: "MySQL is a relational database, NoSQL is non-relational"
     },
     {
+        question: "Which of the following is a cloud-based platform that can be used to deploy apps for businesses?",
+        A: "Amazon AWS",
+        B: "Microsoft Azure",
+        C: "Heroku",
+        D: "All of the above",
+        answer: "All of the above"
+    },
+    {
         question: "What is Laravel?",
         A: "App extension",
         B: "Browser extension",
@@ -225,12 +245,135 @@ let questions = [
         answer: "Hypertext Preprocessor"
     },
     {
+        question: "What does VPN stand for?",
+        A: "Virtual Processor Network",
+        B: "Virtual Privacy Neutrality",
+        C: "Virtual Public Network",
+        D: "Virtual Private Network",
+        answer: "Virtual Private Network"
+    },
+    {
         question: "What does MVC stand for?",
         A: "Manual View Control",
         B: "Model View Control",
         C: "Made View Central",
         D: "Math Version Control",
         answer: "Model View Control"
+    },
+    {
+        question: "What does SQL stand for?",
+        A: "Standard Query Labeling",
+        B: "Structured Query Labeling",
+        C: "Standard Query Language",
+        D: "Structured Query Language",
+        answer: "Structured Query Language"
+    },
+    {
+        question: "What does DNS stand for?",
+        A: "Domain Name System",
+        B: "Domain Name Server",
+        C: "Domain Number System",
+        D: "Dictionary Name System",
+        answer: "Domain Name System"
+    },
+    {
+        question: "What does IP stand for?",
+        A: "Information Protocol",
+        B: "Internet Page",
+        C: "Input",
+        D: "Internet Protocol",
+        answer: "Internet Protocol"
+    },
+    {
+        question: "Which of the following is a library that is often used to build uder interfaces?",
+        A: "Apache servers",
+        B: "MongoDB",
+        C: "React.js",
+        D: "JSON",
+        answer: "React.js"
+    },
+    {
+        question: "Database ______ is a broad topic about how data is stored and used in management systems.",
+        A: "Apache servers",
+        B: "Theory",
+        C: "Relativity",
+        D: "Organization",
+        answer: "Theory"
+    },
+    {
+        question: "______ Line is an interface used to execute certain commands on a computer.",
+        A: "Server",
+        B: "Computer",
+        C: "Program",
+        D: "Command",
+        answer: "Command"
+    },
+    {
+        question: "What does MERN Stack involve?",
+        A: "React",
+        B: "Express",
+        C: "Node.js",
+        D: "All of the above",
+        answer: "All of the above"
+    },
+    {
+        question: "Which of the following languages is object oriented?",
+        A: "HTML",
+        B: "Java",
+        C: "CSS",
+        D: "XML",
+        answer: "Java"
+    },
+    {
+        question: "True or False: MongoDB is considered NoSQL.",
+        A: "True",
+        B: "False",
+        C: "MongoDB is a relational database",
+        D: "MongoDB is considered to be MySQL",
+        answer: "True"
+    },
+    {
+        question: "True or False: Express.js is a web app framework for Node.js?.",
+        A: "True",
+        B: "False",
+        C: "Express.js is a database",
+        D: "All answers above are wrong",
+        answer: "True"
+    },
+    {
+        question: "Fill in the blank: <br> A acronym for a JavaScript data interchange format",
+        answer: "json",
+        fillin: true
+    },
+    {
+        question: "Fill in the blank: <br> We use ____ to structure a web page.",
+        answer: "html",
+        fillin: true
+    },
+    {
+        question: "Fill in the blank: <br> We use ____ for colors, fonts, padding, margin, position, and style.",
+        answer: "css",
+        fillin: true
+    },
+    {
+        question: "Fill in the blank what DB stand for:",
+        answer: "database",
+        fillin: true
+    },
+    {
+        question: "Fill in the blank: <br> _______ is a document database",
+        answer: "mongodb",
+        fillin: true
+    },
+    {
+        question: "Fill in the blank: <br> A _______ database contains items with pre-defined relationships between them.",
+        answer: "relational",
+        fillin: true
+    },
+    {
+        question: "Fill in the blank: <br> You can push/pull code, open additional branches on a project, and even track changes using ___.",
+        answer: "git",
+        fillin: true
     }
 ]
 
@@ -258,7 +401,7 @@ function setTime() {
 /// Start Quiz ///
 function StartQuiz() {
 
-    // For loop that randomly shuffles order of array so question order is always different everytime new quiz starts.
+    // Randomly shuffles questions
     for(let i = questions.length - 1; i > 0; i--){
         const questionsshuffled = Math.floor(Math.random() * i)
         const tempquestions = questions[i]
@@ -266,10 +409,8 @@ function StartQuiz() {
         questions[questionsshuffled] = tempquestions
       }
 
-
     StartQuizButton.classList.add("hidden");
     ShowHighScore.classList.add("hidden");
-    SubmitAnswerForm.classList.remove("hidden");
     CancelQuizButton.classList.remove("hidden");
     CancelQuizButton.classList.add("btn");
     GenerateQuestion(qIndex);
@@ -277,42 +418,56 @@ function StartQuiz() {
 
 /// Generate Question ///
 function GenerateQuestion(qIndex) {
-    Timer.classList.remove("hidden");
-    Timer.classList.add("Timer");
+    
     setTime();
-    QuizQuestion.innerHTML = questions[qIndex].question;
-    A.value = questions[qIndex].A;
-    LA.innerHTML = questions[qIndex].A;
-    B.value = questions[qIndex].B;
-    LB.innerHTML = questions[qIndex].B;
-    C.value = questions[qIndex].C;
-    LC.innerHTML = questions[qIndex].C;
-    D.value = questions[qIndex].D;
-    LD.innerHTML = questions[qIndex].D;
+    SubmitAnswerForm.classList.remove("hidden");
+    
+    if (questions[qIndex].fillin === true) {
+        FillInQuestion.innerHTML = questions[qIndex].question;
+        FillInBlank.setAttribute("maxlength", questions[qIndex].answer.length)
+        FillInBlankForm.classList.remove("hidden");
+    } else {
+        QuizQuestion.innerHTML = questions[qIndex].question;
+        A.value = questions[qIndex].A;
+        LA.innerHTML = questions[qIndex].A;
+        B.value = questions[qIndex].B;
+        LB.innerHTML = questions[qIndex].B;
+        C.value = questions[qIndex].C;
+        LC.innerHTML = questions[qIndex].C;
+        D.value = questions[qIndex].D;
+        LD.innerHTML = questions[qIndex].D;
+        MultipleChoiceForm.classList.remove("hidden");
+    }
 
     /// Check Answer ///
     let CorrectAnswer = questions[qIndex].answer
     SubmitAnswerButton.onclick = function CheckAnswer() {
         Timer.textContent = "10 seconds left to answer."
         clearInterval(timerInterval);
-        Timer.classList.add("hidden");
+
         for (var checkedAnswer of AnswerForm) {
             if (checkedAnswer.checked) {
                 UserAnswer = checkedAnswer.value;
                 break;
+            } else if (questions[qIndex].fillin === true) {
+                UserAnswer = FillInBlank.value;
             } else {
                 UserAnswer = "null";
             }
         }
         
         SubmitAnswerForm.classList.add("hidden");
+        FillInBlankForm.classList.add("hidden");
+        MultipleChoiceForm.classList.add("hidden");
         ShowCorrectAnswer.classList.remove("hidden");
         checkedAnswer.checked = false;
+        FillInBlank.value = "";
         
         // If statements that show the correct answer
         if (QuestionTimer == 0 && UserAnswer == CorrectAnswer) {
             ShowCorrectAnswer.classList.add("AnswerCorrect");
-            ShowCorrectAnswer.innerText = "You ran out of time! But the correct answer is selected and counts. The correct answer is: " + questions[qIndex].answer
+            ShowCorrectAnswer.innerText = "You ran out of time! But the correct answer is entered and still counts. The correct answer is: " 
+            + questions[qIndex].answer
             UserScore++
         } else if (UserAnswer == CorrectAnswer) {
             ShowCorrectAnswer.classList.add("AnswerCorrect");
@@ -350,7 +505,6 @@ function NextQuestion() {
     ShowCorrectAnswer.classList.remove("AnswerCorrect")
     ShowCorrectAnswer.classList.add("hidden");
     NextQuestionButton.classList.add("hidden");
-    SubmitAnswerForm.classList.remove("hidden");
     Progress.style.width = 100 + "%";
 
     // Generate new question
@@ -362,8 +516,9 @@ function NextQuestion() {
 
 /// Cancel Quiz ///
 function CancelQuiz() {
-    Timer.classList.add("hidden");
     SubmitAnswerForm.classList.add("hidden");
+    MultipleChoiceForm.classList.add("hidden");
+    FillInBlankForm.classList.add("hidden");
     clearInterval(timerInterval);
     CancelQuizButton.classList.add("hidden");
     Timer.textContent = "10 seconds left to answer."

@@ -107,6 +107,9 @@ complete the quiz automatically updates per question added/removed.
 The Start Quiz function hides the defult front page and then 
 shows the quiz form. Then it  activates the GenerateQuestion
 (qIndex) funtion starting at the first question in the index.
+This function also shuffles the questions in random order
+so that they are not always display in random order every time
+the user starts a quiz.
 
 
 ## Generate Question

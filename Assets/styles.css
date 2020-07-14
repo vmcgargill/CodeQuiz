@@ -90,7 +90,7 @@ body {
     box-shadow: 0 0 15px 2px;
 }
 
-#SubmitAnswerForm {
+#SubmitAnswerForm, #FillInBlankForm, #MultipleChoiceForm {
     padding: 10px;
     margin: 10px;
 }
