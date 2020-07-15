@@ -24,15 +24,17 @@ const Timer = document.getElementById("Timer");
 const ProgressBar = document.getElementById("ProgressBar");
 const Progress = document.getElementById("Progress");
 const ShowScore = document.getElementById("ShowScore");
+const ClearHighScoreBtn = document.getElementById("ClearHighScoreBtn");
 const EndQuizButton = document.getElementById("EndQuizButton");
 
 /// Global Variables ///
-var UserHighScore = 0;
 var UserScore = 0;
 var qIndex = 0;
 let UserAnswer;
 var QuestionTimer = 15;
 var timerInterval;
+
+// const DefualtTime = 15;
 
 /// Questions Array ///
 let questions = [
@@ -241,7 +243,7 @@ let questions = [
         A: "Hypertext Preprocessor",
         B: "Desktop app",
         C: "HTML Framework",
-        D: "Dataabse",
+        D: "Database",
         answer: "Hypertext Preprocessor"
     },
     {
@@ -285,7 +287,7 @@ let questions = [
         answer: "Internet Protocol"
     },
     {
-        question: "Which of the following is a library that is often used to build uder interfaces?",
+        question: "Which of the following is a library that is often used to build user interfaces?",
         A: "Apache servers",
         B: "MongoDB",
         C: "React.js",
@@ -341,7 +343,7 @@ let questions = [
         answer: "True"
     },
     {
-        question: "Fill in the blank: <br> A acronym for a JavaScript data interchange format",
+        question: "Fill in the blank: <br> A JavaScript data interchange format",
         answer: "json",
         fillin: true
     },
@@ -382,8 +384,8 @@ function setTime() {
   timerInterval = setInterval(function() {
     QuestionTimer--;
     
-    if (QuestionTimer <= 15) {
-        Progress.style.width = 6.67 * QuestionTimer + "%";
+    if (QuestionTimer < 15) {
+        Progress.style.width = QuestionTimer * 6.67 + '%';
         Timer.textContent = QuestionTimer + " seconds left to answer.";
     } 
     if (QuestionTimer === 0) {
@@ -404,9 +406,10 @@ function StartQuiz() {
         const tempquestions = questions[i]
         questions[i] = questions[questionsshuffled]
         questions[questionsshuffled] = tempquestions
-      }
+    }
 
     StartQuizButton.classList.add("hidden");
+    ClearHighScoreBtn.classList.add("hidden");
     ShowHighScore.classList.add("hidden");
     CancelQuizButton.classList.remove("hidden");
     CancelQuizButton.classList.add("btn");
@@ -517,7 +520,7 @@ function CancelQuiz() {
     FillInBlankForm.classList.add("hidden");
     CancelQuizButton.classList.add("hidden");
     clearInterval(timerInterval);
-    EndQuiz()
+    EndQuiz();
 }
 
 /// End Quiz ///
@@ -528,18 +531,48 @@ function EndQuiz() {
     ShowCorrectAnswer.classList.remove("AnswerIncorrect")
     NextQuestionButton.classList.add("hidden");
     StartQuizButton.classList.remove("hidden");
-    
     alert("End of the quiz. Your final score was: " + UserScore + " / " + questions.length);
+
+    var UserHighScore = localStorage.getItem("UserHighScore");
     if (UserScore >= UserHighScore) {
-        UserHighScore = UserScore;
+        var UpdateUserHighScore = UserScore;
+        localStorage.setItem("UserHighScore", UpdateUserHighScore);
     }
-    ShowHighScore.innerHTML = "Your high score is: " + UserHighScore + " / " + questions.length + 
-    "<br> High Score Percentage: " + Math.floor(UserHighScore / questions.length * 100) + "%"
-    ShowHighScore.classList.remove("hidden");
-    ShowHighScore.classList.add("ShowHighScore");
+
     UserScore = 0;
     qIndex = 0;
     QuestionTimer = 15;
     Timer.textContent = "15 seconds left to answer."
     Progress.style.width = 100 + "%";
+    GetHighScore();
+}
+
+/// Get High Score ///
+function GetHighScore() {
+    var StoredUserHighScore = localStorage.getItem("UserHighScore");
+    if (StoredUserHighScore === null) {
+        ShowHighScore.classList.add("hidden");
+        ClearHighScoreBtn.classList.add("hidden");
+    } else {
+        ShowHighScore.innerHTML = "Your high score is: " + StoredUserHighScore + " / " + questions.length + 
+        "<br> High Score Percentage: " + Math.floor(StoredUserHighScore / questions.length * 100) + "%"
+        ShowHighScore.classList.remove("hidden");
+        ShowHighScore.classList.add("ShowHighScore");
+        ClearHighScoreBtn.classList.remove("hidden");
+        ClearHighScoreBtn.classList.add("btn");
+    }
+}
+
+GetHighScore();
+
+/// Clear High Score ///
+function ClearHighScore() {
+
+    var ConfirmClearHighScore = confirm("Are you sure you want to permenantly erase your high score?")
+
+    if (ConfirmClearHighScore === true) {
+        localStorage.removeItem("UserHighScore");
+        ShowHighScore.classList.add("hidden");
+        ClearHighScoreBtn.classList.add("hidden");
+    }
 }
