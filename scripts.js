@@ -1,6 +1,8 @@
 /// Constant HTML Elements ///
 const StartQuizButton = document.getElementById("StartQuizButton");
 const ShowHighScore = document.getElementById("ShowHighScore");
+const ShowScoreBoard = document.getElementById("ShowScoreBoard");
+const ScoreBoard = document.getElementById('ScoreBoard');
 const SubmitAnswerForm = document.getElementById("SubmitAnswerForm");
 const FillInQuestion = document.getElementById("FillInQuestion");
 const FillInBlank = document.getElementById("FillInBlank");
@@ -31,10 +33,10 @@ const EndQuizButton = document.getElementById("EndQuizButton");
 var UserScore = 0;
 var qIndex = 0;
 let UserAnswer;
-var QuestionTimer = 15;
 var timerInterval;
 
-// const DefualtTime = 15;
+/// Set Quiz Time ///
+var QuestionTimer = 15;
 
 /// Questions Array ///
 let questions = [
@@ -451,6 +453,7 @@ function StartQuiz() {
     StartQuizButton.classList.add("hidden");
     ClearHighScoreBtn.classList.add("hidden");
     ShowHighScore.classList.add("hidden");
+    ShowScoreBoard.classList.add("hidden");
     CancelQuizButton.classList.remove("hidden");
     CancelQuizButton.classList.add("btn");
     GenerateQuestion(qIndex);
@@ -571,12 +574,37 @@ function EndQuiz() {
     ShowCorrectAnswer.classList.remove("AnswerIncorrect")
     NextQuestionButton.classList.add("hidden");
     StartQuizButton.classList.remove("hidden");
-    alert("End of the quiz. Your final score was: " + UserScore + " / " + questions.length);
+    
+    var UserName = prompt("End of the quiz. Your final score was: " + UserScore + " / " + questions.length +
+    ". Your score percentage was: " + Math.floor(UserScore / questions.length * 100) + "%. " +
+    "Please enter your name to record the score: ");
+
+    var QuizDate = new Date();
+    var dd = String(QuizDate.getDate()).padStart(2, '0');
+    var mm = String(QuizDate.getMonth() + 1).padStart(2, '0');
+    var yyyy = QuizDate.getFullYear();
+    QuizDate = mm + '/' + dd + '/' + yyyy;
+
+    var UserScoreRecord = UserName + ": " + JSON.stringify(UserScore) + "/" + questions.length + " - " +
+    JSON.stringify(UserScore / questions.length * 100) + "% - " + QuizDate;
+
+    var ScoreBoardRecord = JSON.parse(localStorage.getItem("ScoreBoardRecord"));
+
+    if (ScoreBoardRecord === null) {
+        var NewScoreBoard = [];
+        NewScoreBoard.push(UserScoreRecord);
+        localStorage.setItem("ScoreBoardRecord", JSON.stringify(NewScoreBoard));
+    } else {
+        ScoreBoardRecord.push(UserScoreRecord);
+        localStorage.setItem("ScoreBoardRecord", JSON.stringify(ScoreBoardRecord));
+    }
+    
 
     var UserHighScore = localStorage.getItem("UserHighScore");
     if (UserScore >= UserHighScore) {
         var UpdateUserHighScore = UserScore;
         localStorage.setItem("UserHighScore", UpdateUserHighScore);
+        localStorage.setItem("HighestScoreName", UserName);
     }
 
     UserScore = 0;
@@ -584,35 +612,50 @@ function EndQuiz() {
     QuestionTimer = 15;
     Timer.textContent = "15 seconds left to answer."
     Progress.style.width = 100 + "%";
-    GetHighScore();
+    GetHighScores();
 }
 
 /// Get High Score ///
-function GetHighScore() {
+function GetHighScores() {
     var StoredUserHighScore = localStorage.getItem("UserHighScore");
-    if (StoredUserHighScore === null) {
-        ShowHighScore.classList.add("hidden");
-        ClearHighScoreBtn.classList.add("hidden");
-    } else {
-        ShowHighScore.innerHTML = "Your high score is: " + StoredUserHighScore + " / " + questions.length + 
-        "<br> High Score Percentage: " + Math.floor(StoredUserHighScore / questions.length * 100) + "%"
+    var StoredUser = localStorage.getItem('HighestScoreName');
+    var ScoreBoardRecord = JSON.parse(localStorage.getItem("ScoreBoardRecord"));
+    if (StoredUserHighScore !== null)  {
+        ShowHighScore.innerHTML = "Highest Score: " + StoredUserHighScore + " / " + questions.length + 
+        "<br> Highest Score Percentage: " + Math.floor(StoredUserHighScore / questions.length * 100) + "% <br>" +
+        "Name: " + StoredUser;
+        ScoreBoard.innerHTML = "";
+        
+        // Loop that renders li for each score recorded
+        for (var i = 0; i < ScoreBoardRecord.length; i++) {
+            var ShowScoreBoardRecord = ScoreBoardRecord[i];
+        
+            var li = document.createElement("li");
+            li.textContent = ShowScoreBoardRecord;
+            ScoreBoard.appendChild(li);
+          }
+
         ShowHighScore.classList.remove("hidden");
-        ShowHighScore.classList.add("ShowHighScore");
+        ShowScoreBoard.classList.remove("hidden");
         ClearHighScoreBtn.classList.remove("hidden");
         ClearHighScoreBtn.classList.add("btn");
     }
 }
 
-GetHighScore();
+GetHighScores();
 
 /// Clear High Score ///
 function ClearHighScore() {
 
-    var ConfirmClearHighScore = confirm("Are you sure you want to permenantly erase your high score?")
+    var ConfirmClearHighScore = confirm("Are you sure you want to permenantly erase your entire score history?");
 
     if (ConfirmClearHighScore === true) {
         localStorage.removeItem("UserHighScore");
+        localStorage.removeItem("ScoreBoardRecord");
+        localStorage.removeItem("HighestScoreName");
         ShowHighScore.classList.add("hidden");
         ClearHighScoreBtn.classList.add("hidden");
+        ShowScoreBoard.classList.add("hidden");
+        // localStorage.clear();
     }
 }

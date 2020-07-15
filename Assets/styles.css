@@ -76,7 +76,7 @@ body {
     background-color: rgb(139, 0, 0);
 }
 
-.ShowHighScore {
+#ShowHighScore, #ShowScoreBoard {
     background-color: white;
     border: 3px solid black;
     border-radius: 25px;
@@ -88,6 +88,10 @@ body {
     margin-right: auto;
     position: relative;
     box-shadow: 0 0 15px 2px;
+}
+
+#ShowScoreBoard {
+    margin-top: 5%;
 }
 
 #SubmitAnswerForm, #FillInBlankForm, #MultipleChoiceForm {
