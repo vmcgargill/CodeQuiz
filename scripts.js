@@ -135,6 +135,38 @@ let questions = [
         answer: "Open source CSS framework for responsive websites"
     },
     {
+        question: "How do you store data on a local machine using JavaScript?",
+        A: "localStorage.setItem()",
+        B: "localStorage.getItem()",
+        C: "localStorage.removeItem()",
+        D: "localStorage.clear();",
+        answer: "localStorage.setItem()"
+    },
+    {
+        question: "How do you access data on a local machine using JavaScript?",
+        A: "localStorage.setItem()",
+        B: "localStorage.getItem()",
+        C: "localStorage.removeItem()",
+        D: "localStorage.clear();",
+        answer: "localStorage.getItem()"
+    },
+    {
+        question: "How do you delete data on a local machine using JavaScript?",
+        A: "localStorage.setItem()",
+        B: "localStorage.getItem()",
+        C: "localStorage.removeItem()",
+        D: "localStorage.clear();",
+        answer: "localStorage.removeItem()"
+    },
+    {
+        question: "How do you clear ALL data on a local machine using JavaScript?",
+        A: "localStorage.setItem()",
+        B: "localStorage.getItem()",
+        C: "localStorage.removeItem()",
+        D: "localStorage.clear();",
+        answer: "localStorage.clear()"
+    },
+    {
         question: "What is a JavaScript Array?",
         A: "A collection",
         B: "A feature on GitHub",
@@ -196,6 +228,14 @@ let questions = [
         B: "A website",
         C: "A letter and a pound sign",
         D: "A typo",
+        answer: "A general purpose programming language"
+    },
+    {
+        question: "What is C++?",
+        A: "Math equation",
+        B: "Javascript Function",
+        C: "Mobile App",
+        D: "A general purpose programming language",
         answer: "A general purpose programming language"
     },
     {
