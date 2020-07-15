@@ -139,7 +139,7 @@ let questions = [
         A: "localStorage.setItem()",
         B: "localStorage.getItem()",
         C: "localStorage.removeItem()",
-        D: "localStorage.clear();",
+        D: "localStorage.clear()",
         answer: "localStorage.setItem()"
     },
     {
@@ -147,7 +147,7 @@ let questions = [
         A: "localStorage.setItem()",
         B: "localStorage.getItem()",
         C: "localStorage.removeItem()",
-        D: "localStorage.clear();",
+        D: "localStorage.clear()",
         answer: "localStorage.getItem()"
     },
     {
@@ -155,7 +155,7 @@ let questions = [
         A: "localStorage.setItem()",
         B: "localStorage.getItem()",
         C: "localStorage.removeItem()",
-        D: "localStorage.clear();",
+        D: "None of the above",
         answer: "localStorage.removeItem()"
     },
     {
@@ -163,7 +163,7 @@ let questions = [
         A: "localStorage.setItem()",
         B: "localStorage.getItem()",
         C: "localStorage.removeItem()",
-        D: "localStorage.clear();",
+        D: "localStorage.clear()",
         answer: "localStorage.clear()"
     },
     {
