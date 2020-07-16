@@ -656,6 +656,5 @@ function ClearHighScore() {
         ShowHighScore.classList.add("hidden");
         ClearHighScoreBtn.classList.add("hidden");
         ShowScoreBoard.classList.add("hidden");
-        // localStorage.clear();
     }
 }
