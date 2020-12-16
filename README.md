@@ -1,4 +1,4 @@
-# 04 Web APIs: Code Quiz
+# Code Quiz
 
 Link: https://vmcgargill.github.io/04CodeQuiz/
 
