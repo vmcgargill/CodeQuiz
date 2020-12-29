@@ -1,6 +1,6 @@
 # Code Quiz
 
-Link: https://vmcgargill.github.io/04CodeQuiz/
+Link: https://vmcgargill.github.io/CodeQuiz/
 
 In this assignment, I have built a responsive timed quiz that 
 scores the user out of 100%. The quiz keeps track of the 
